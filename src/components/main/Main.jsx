@@ -18,6 +18,7 @@ import { LanguageContext } from './language-context/LanguageContext';
 import languagesData from './data/languages.json';
 import theme from "./theme";
 
+
 function Main() {
     const [currentLanguage, setCurrentLanguage] = useState('English');
     const [userName, setUserName] = useState('');
@@ -36,9 +37,15 @@ function Main() {
         <ThemeProvider theme={theme}>
             <LanguageContext.Provider value={{ currentLanguage, setCurrentLanguage }}>
                 <Box sx={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', background: languageGradient }}>
-                    <AppBar position="static" sx={{height: '10vh', justifyContent: 'center'}}>
+                    <AppBar
+                        position="static" elevation={1} sx={{
+                        height: '10vh',
+                        justifyContent: 'center',
+                        backgroundImage: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                        }}
+                    >
                         <Toolbar>
-                            <LanguageSelector />
+                             <LanguageSelector/>
                             <Box sx={{ flexGrow: 1 }} />
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                 <Avatar alt={userName} src="/path-to-avatar.jpg" sx={{ width: 40, height: 40 }} />
@@ -49,16 +56,17 @@ function Main() {
                             </Box>
                         </Toolbar>
                     </AppBar>
+
                     <Container component="main" sx={{ flexGrow: 1, overflow: 'auto', padding: '20px'}}>
                         <Grid container spacing={3} alignItems="center" justifyContent="center">
                             <Grid item xs={12} md={4}>
-                                <SessionDetails />
+                                {/*  <SessionDetails />*/}
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <ProfileCard/>
                             </Grid>
                             <Grid item xs={12} md={4}>
-                                <LearningProgress />
+                                {/*<LearningProgress />*/}
                             </Grid>
                         </Grid>
                     </Container>

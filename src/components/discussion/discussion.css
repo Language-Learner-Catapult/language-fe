@@ -1,25 +1,38 @@
 .character {
-    width: 100px;
-    height: 100px;
-    background-color: #3ab9ae;
-    position: relative;
-    border-radius: 50%; /* Make it a circle */
-    overflow: hidden; /* Hide the wave overflow */
+    /* Your existing styles for character */
 }
 
-.character::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120%; /* Slightly larger than the circle */
-    height: 120%;
-    background: radial-gradient(circle closest-side, #7ad5d4 50%, transparent 51%);
-    animation: wave 1s infinite alternate;
+.mouth {
+    /* Your existing styles for mouth */
 }
 
-@keyframes wave {
-    0% { transform: translate(-50%, -50%) scale(1); }
-    100% { transform: translate(-50%, -50%) scale(1.2); }
+button {
+    background: linear-gradient(#141E30, #243B55); /* Material Design purple */
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    margin: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Roboto','Helvetica','Arial',sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+button:hover {
+    background: linear-gradient(#293750, #346296); /* A darker purple for hover */
+    box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),
+    0px 4px 5px 0px rgba(0,0,0,0.14),
+    0px 1px 10px 0px rgba(0,0,0,0.12);
+}
+
+button:active {
+    background: #141E30 /* Even darker for the ripple effect simulation */
+}
+
+/* If your project supports CSS-in-JS or similar, you can inline these styles. */

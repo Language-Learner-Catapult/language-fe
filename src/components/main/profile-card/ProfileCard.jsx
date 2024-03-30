@@ -1,16 +1,30 @@
 import React, { useContext } from 'react';
 import { Typography, Box } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
 import { LanguageContext } from '../language-context/LanguageContext';
 import languagesData from '../data/languages.json';
+import Discussion from '../../discussion/Discussion.jsx';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ProfileCard = () => {
     const { currentLanguage } = useContext(LanguageContext);
     const profileData = {
         name: languagesData[currentLanguage].agentName,
-        avatarUrl: languagesData[currentLanguage].image // Ensure this points to the correct image path
+        // avatarUrl will not be used for the image anymore
     };
-    console.log(profileData.avatarUrl)
+
+    // Function to generate random animation for each bar
+    const generateAnimation = () => ({
+        hidden: { scaleY: 0.2 },
+        show: {
+            scaleY: [0.2, Math.random() + 0.5, Math.random()],
+            transition: {
+                duration: Math.random() * 0.5 + 0.5, // Random duration between 0.5 to 1 second
+                ease: 'easeInOut',
+                repeat: Infinity,
+                repeatType: 'mirror',
+            }
+        }
+    });
 
     return (
         <Box
@@ -23,24 +37,40 @@ const ProfileCard = () => {
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
                 textAlign: 'center',
-                // Ensure the text color is visible on the background gradient
-                color: 'white', // Adjust as needed depending on your background
+                color: 'white',
             }}
         >
             <Typography variant="h5" component="h2" gutterBottom>
                 {profileData.name}
             </Typography>
-            <Avatar
-                alt={profileData.name}
-                src={profileData.avatarUrl}
+            {/* Animated Bars with Separate Random Animations */}
+            <Box
                 sx={{
-                    width: 180, // Adjust the avatar size accordingly
+                    display: 'flex',
                     height: 180,
                     margin: '8px 0',
-                    // If your background is light, consider adding a subtle shadow for depth
-                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
                 }}
-            />
+            >
+                <AnimatePresence>
+                    {Array.from({ length: 4 }).map((_, index) => (
+                        <motion.div
+                            key={`bar-${index}`}
+                            style={{
+                                background: 'white',
+                                width: '20px',
+                                height: '100%',
+                                margin: '0 2px',
+                                borderRadius: '10px',
+                                originY: 1, // Animation origin at the bottom
+                            }}
+                            variants={generateAnimation()} // Call generateAnimation to get unique animations
+                            initial="hidden"
+                            animate="show"
+                        />
+                    ))}
+                </AnimatePresence>
+            </Box>
+            <Discussion/>
             <Typography variant="subtitle1">
                 Learning {currentLanguage}
             </Typography>
