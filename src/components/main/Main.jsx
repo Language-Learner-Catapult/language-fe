@@ -41,7 +41,7 @@ function Main() {
                         position="static" elevation={1} sx={{
                         height: '10vh',
                         justifyContent: 'center',
-                        backgroundImage: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                        background: 'transparent',
                         }}
                     >
                         <Toolbar>
