@@ -22,8 +22,16 @@ const LanguageSelector = () => {
             sx={{
                 color: 'white',
                 '& .MuiSvgIcon-root': { color: 'white' },
-                background: 'none', // Ensure no background
-                border: 'none', // Ensure no border
+                boxShadow: "none",
+                ".MuiOutlinedInput-notchedOutline": { border: 0 },
+                "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                    {
+                        border: 0,
+                    },
+                "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                    {
+                        border: 0,
+                    },
             }}
         >
             {Object.keys(languagesData).map((language) => (
