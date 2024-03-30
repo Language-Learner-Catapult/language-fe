@@ -1,79 +1,67 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './discussion.css';
 import app from '../../firebaseconfig';
-import {getFirestore} from "firebase/firestore";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 const Discussion = () => {
     const db = getFirestore(app);
     const [talking, setTalking] = useState(false);
     const mediaRecorderRef = useRef(null);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setTalking(prevTalking => !prevTalking);
-        }, 2000);
-
-        return () => clearInterval(interval);
-    }, []);
-
-    // Start Recording on Component Mount
-    useEffect(() => {
-        async function startRecording() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-
-                // Use MediaRecorder for WAV support (check browser compatibility)
-                mediaRecorderRef.current = new MediaRecorder(stream, { mimeType: 'audio/wav' });
-
-                mediaRecorderRef.current.addEventListener('dataavailable', handleDataAvailable);
-                mediaRecorderRef.current.start();
-            } catch (err) {
-                console.error('Error accessing microphone:', err);
+    const startRecording = async () => {
+        setTalking(true);
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            let mimeType = 'audio/wav';
+            if (!MediaRecorder.isTypeSupported(mimeType)) {
+                mimeType = 'audio/webm'; // Fallback to webm if wav is not supported
             }
+            mediaRecorderRef.current = new MediaRecorder(stream, { mimeType: mimeType });
+
+            mediaRecorderRef.current.addEventListener('dataavailable', handleDataAvailable);
+            mediaRecorderRef.current.start();
+        } catch (err) {
+            console.error('Error accessing microphone:', err);
+            setTalking(false); // Stop talking if there is an error
         }
+    };
 
-        startRecording();
-
-        return () => {
-            if (mediaRecorderRef.current) {
-                mediaRecorderRef.current.stop();
-            }
+    const stopRecording = () => {
+        if (mediaRecorderRef.current) {
+            mediaRecorderRef.current.stop();
+            setTalking(false);
         }
-    }, []);
+    };
 
-    const handleDataAvailable = (event) => {
+    const handleDataAvailable = async (event) => {
         if (event.data.size > 0) {
-            const audioBlob = new Blob([event.data], { type: 'audio/wav' });
+            const audioBlob = new Blob([event.data], { type: 'audio/webm' });
 
-            uploadAudioToFirebaseJSON(audioBlob);
+            await uploadAudioToFirebase(audioBlob);
         }
-    }
+    };
 
-    const uploadAudioToFirebaseJSON = (audioBlob) => {
+    const uploadAudioToFirebase = async (audioBlob) => {
         const reader = new FileReader();
 
         reader.readAsDataURL(audioBlob); // Convert audioBlob to Base64 Data URL
 
-        reader.onloadend = () => {
+        reader.onloadend = async () => {
             const base64data = reader.result;
 
-            // Example JSON Structure
-            const jsonData = {
-                audio: base64data
-            };
-
-            // Assuming you have Firebase configured and a reference 'audioRecords'
-            const firebaseRef = db.ref('audioRecords');
-            firebaseRef.push(jsonData); // Upload to Firebase
+            const audioCollection = collection(db, 'audioRecords');
+            await addDoc(audioCollection, { audio: base64data });
         };
     };
 
-
-    return (
+    return (<>
         <div className={`character ${talking ? 'talk' : ''}`}>
             <div className="mouth"></div>
         </div>
-    );
+    <button onClick={startRecording}>Start Recording</button>
+    <button onClick={stopRecording}>Stop Recording</button>
+        </>
+);
 };
 
 export default Discussion;
