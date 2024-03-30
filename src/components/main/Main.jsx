@@ -54,14 +54,12 @@ function Main() {
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '10px',
-                                    borderRadius: '10px', // Add rounded corners
-                                    border: '1px solid #ccc', // Add border for the rectangle (optional)
-                                    padding: '5px', // Add some padding inside the rounded rectangle (optional)
+                                    padding: '10px', // Add some padding inside the rounded rectangle (optional)
                                 }}
                             >
                                 <Avatar alt={userName} src="/path-to-avatar.jpg" sx={{ width: 40, height: 40 }} />
-                                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                                    <Typography variant="subtitle1">{Cookies.get("user_id")}</Typography>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end'}}>
+                                    <Typography variant="subtitle1">{Cookies.get("username")}</Typography>
                                     <Typography variant="caption">{`Level: ${userLevel}`}</Typography>
                                 </Box>
                             </Box>
