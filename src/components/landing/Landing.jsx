@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Typography, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import GoogleIcon from '@mui/icons-material/Google';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import Cookies from 'js-cookie';
 import app from '../../firebaseconfig';
+import { useNavigate } from 'react-router-dom';
 
 const SignInButton = styled(Button)(({ theme }) => ({
   padding: theme.spacing(1.5),
@@ -21,6 +22,7 @@ const SignInButton = styled(Button)(({ theme }) => ({
 }));
 
 const LandingPage = ({ setAuthenticated }) => {
+  const navigate = useNavigate();
   const handleGoogleSignIn = () => {
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
@@ -29,6 +31,7 @@ const LandingPage = ({ setAuthenticated }) => {
         const user = result.user;
         Cookies.set('user_id', user.uid, { expires: 1 });
         setAuthenticated(true);
+        navigate('/learn');
       })
       .catch((error) => {
         console.error(error);
@@ -39,34 +42,38 @@ const LandingPage = ({ setAuthenticated }) => {
     <Box
       sx={{
         minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
       }}
     >
-      <Container maxWidth="md">
-        <Box
-          sx={{
-            backgroundColor: 'rgba(255, 255, 255, 0.8)',
-            borderRadius: '16px',
-            padding: '2rem',
-            textAlign: 'center',
-          }}
-        >
-          <Typography variant="h2" component="h1" gutterBottom>
-            Welcome to Language Learner
-          </Typography>
-          <Typography variant="h5" component="p" gutterBottom>
-            Learn a new language through interactive conversations with AI!
-          </Typography>
-          <Box mt={4}>
-            <SignInButton startIcon={<GoogleIcon />} onClick={handleGoogleSignIn}>
-              Sign in with Google
-            </SignInButton>
-          </Box>
-        </Box>
+      <Container maxWidth="lg">
+        <Grid container alignItems="center" justifyContent="space-between" sx={{ minHeight: '100vh' }}>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Typography variant="h2" component="h1" sx={{ fontWeight: 700, color: 'white', mb: 2 }}>
+                Master a Language Faster by Speaking with AI
+              </Typography>
+              <Typography variant="h5" component="p" sx={{ fontWeight: 400, color: 'white', mb: 4 }}>
+                Transform your language learning experience through 24/7 immersion with personalized AI chat-based tools.
+              </Typography>
+              <SignInButton startIcon={<GoogleIcon />} onClick={handleGoogleSignIn}>
+                Sign in with Google
+              </SignInButton>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                borderRadius: '16px',
+                padding: '2rem',
+                textAlign: 'center',
+              }}
+            >
+              {/* Placeholder for phone mockup */}
+              <Box sx={{ width: '100%', height: '400px', backgroundColor: 'lightgray', borderRadius: '16px' }} />
+            </Box>
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );
