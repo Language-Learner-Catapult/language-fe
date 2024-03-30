@@ -1,8 +1,62 @@
 {
   "English": {
-    "gradient": "linear-gradient(to right, #FFF , #FFF)"
+    "gradient": "linear-gradient(to right, #abe9cd, #3eadcf)"
+  },
+  "Mandarin": {
+    "gradient": "linear-gradient(to right, #ffecd2, #fcb69f)"
+  },
+  "Hindi": {
+    "gradient": "linear-gradient(to right, #89f7fe, #66a6ff)"
   },
   "Spanish": {
-    "gradient": "linear-gradient(to right, #FFF , #FFF)"
+    "gradient": "linear-gradient(to right, #ff9a9e, #fecfef)"
+  },
+  "French": {
+    "gradient": "linear-gradient(to right, #a1c4fd, #c2e9fb)"
+  },
+  "Arabic": {
+    "gradient": "linear-gradient(to right, #fddb92, #d1fdff)"
+  },
+  "Bengali": {
+    "gradient": "linear-gradient(to right, #fbc2eb, #a6c1ee)"
+  },
+  "Russian": {
+    "gradient": "linear-gradient(to right, #84fab0, #8fd3f4)"
+  },
+  "Portuguese": {
+    "gradient": "linear-gradient(to right, #cc2b5e, #753a88)"
+  },
+  "Indonesian": {
+    "gradient": "linear-gradient(to right, #ee9ca7, #ffdde1)"
+  },
+  "Urdu": {
+    "gradient": "linear-gradient(to right, #ff758c, #ff7eb3)"
+  },
+  "German": {
+    "gradient": "linear-gradient(to right, #cfd9df, #e2ebf0)"
+  },
+  "Japanese": {
+    "gradient": "linear-gradient(to right, #a18cd1, #fbc2eb)"
+  },
+  "Swahili": {
+    "gradient": "linear-gradient(to right, #ffecd2, #fcb69f)"
+  },
+  "Marathi": {
+    "gradient": "linear-gradient(to right, #ff9a9e, #fad0c4)"
+  },
+  "Telugu": {
+    "gradient": "linear-gradient(to right, #fbc2eb, #a6c1ee)"
+  },
+  "Turkish": {
+    "gradient": "linear-gradient(to right, #cfd9df, #e2ebf0)"
+  },
+  "Korean": {
+    "gradient": "linear-gradient(to right, #a1c4fd, #c2e9fb)"
+  },
+  "Vietnamese": {
+    "gradient": "linear-gradient(to right, #fad0c4, #ffd1ff)"
+  },
+  "Italian": {
+    "gradient": "linear-gradient(to right, #ffecd2, #fcb69f)"
   }
 }
