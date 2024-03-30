@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import './discussion.css';
 import app from '../../firebaseconfig';
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+import Cookies from "js-cookie";
+import { v4 as uuidv4 } from "uuid";
 
 const Discussion = () => {
     const db = getFirestore(app);
@@ -47,10 +49,18 @@ const Discussion = () => {
         reader.readAsDataURL(audioBlob); // Convert audioBlob to Base64 Data URL
 
         reader.onloadend = async () => {
-            const base64data = reader.result;
-
-            const audioCollection = collection(db, 'audioRecords');
-            await addDoc(audioCollection, { audio: base64data });
+            const base64data = {audio: reader.result};
+            let uuid = uuidv4();
+            await setDoc(
+                doc(
+                    db,
+                    'audioRecords',
+                    Cookies.get("user_id"),
+                    Cookies.get("user_id"),
+                    uuid,
+                ),
+                base64data,
+            );
         };
     };
 
