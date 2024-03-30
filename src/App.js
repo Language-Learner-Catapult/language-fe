@@ -26,9 +26,6 @@ function App() {
           path="/learn"
           element={authenticated ? <Main /> : <Navigate to="/" replace />}
         />
-        <Route
-          path="/discussion"
-          element={authenticated ? <Discussion /> : <Navigate to="/discussion" replace />}/>
       </Routes>
     </BrowserRouter>
   );

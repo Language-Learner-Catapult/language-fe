@@ -6,7 +6,10 @@ import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 const ScrollDownButton = () => {
     const theme = useTheme();
-    const navigate = useNavigate();
+
+    function handleTranscript() {
+        //implement
+    }
 
     return (
         <div style={{
@@ -34,7 +37,7 @@ const ScrollDownButton = () => {
                     minHeight: 0,
                 }}
                 onClick={() => {
-                    navigate('/discussion');
+                    handleTranscript();
                 }}
             >
                 <KeyboardArrowDownIcon style={{ fontSize: '1.5rem' }} /> {/* Smaller icon */}
