@@ -41,7 +41,7 @@ function Main() {
         <ThemeProvider theme={theme}>
             <LanguageContext.Provider value={{ currentLanguage, setCurrentLanguage }}>
                 <Box sx={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', background: languageGradient }}>
-                    <AppBar position="static" sx={{ minHeight: '10vh' }}>
+                    <AppBar position="static" sx={{ minHeight: '10vh', justifyContent: 'center' }}>
                         <Toolbar>
                             <LanguageSelector />
                             <Box sx={{ flexGrow: 1 }} />
