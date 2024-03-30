@@ -40,13 +40,13 @@ function Main() {
     return (
         <ThemeProvider theme={theme}>
             <LanguageContext.Provider value={{ currentLanguage, setCurrentLanguage }}>
-                <Box sx={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', background: languageGradient}}>
-                    <AppBar position="static" sx={{ height: '10vh', justifyContent:'center' }}>
+                <Box sx={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', background: languageGradient }}>
+                    <AppBar position="static" sx={{ minHeight: '10vh' }}>
                         <Toolbar>
                             <LanguageSelector />
                             <Box sx={{ flexGrow: 1 }} />
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px', pr: 2 }}>
-                                <Avatar alt={userName} src="/path-to-avatar.jpg" sx={{ width: 40, height: 40 }} /> {/* Reduced avatar size */}
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <Avatar alt={userName} src="/path-to-avatar.jpg" sx={{ width: 40, height: 40 }} />
                                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
                                     <Typography variant="subtitle1">{Cookies.get("user_id")}</Typography>
                                     <Typography variant="caption">{`Level: ${userLevel}`}</Typography>
@@ -54,8 +54,7 @@ function Main() {
                             </Box>
                         </Toolbar>
                     </AppBar>
-
-                    <Container component="main" sx={{ flex: 1, padding: '20px 0' }}>
+                    <Container component="main" sx={{ flexGrow: 1, overflow: 'auto', padding: '0px 0' }}>
                         <Grid container spacing={3}>
                             <Grid item xs={12} md={8} lg={6}>
                                 <ProfileCard />
