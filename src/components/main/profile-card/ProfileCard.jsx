@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Card, Typography, Box } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import { LanguageContext } from '../language-context/LanguageContext';
 
@@ -18,46 +18,32 @@ const ProfileCard = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                position: 'absolute', // Position it in the middle
+                position: 'absolute',
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: 250, // Adjust size accordingly
-                height: 250,
-                borderRadius: '50%',
-                overflow: 'hidden',
+                textAlign: 'center',
+                // Ensure the text color is visible on the background gradient
+                color: 'white', // Adjust as needed depending on your background
             }}
         >
-            <Card
+            <Typography variant="h5" component="h2" gutterBottom>
+                {profileData.name}
+            </Typography>
+            <Avatar
+                alt={profileData.name}
+                src={profileData.avatarUrl}
                 sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '100%',
-                    boxShadow: '0 4px 10px 0 rgba(0,0,0,0.2)',
-                    borderRadius: '50%',
-                    backgroundColor: 'primary.main', // Adjust the color based on your theme
+                    width: 120, // Adjust the avatar size accordingly
+                    height: 120,
+                    margin: '8px 0',
+                    // If your background is light, consider adding a subtle shadow for depth
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
                 }}
-            >
-                <Typography variant="h5" component="h2" gutterBottom>
-                    {profileData.name}
-                </Typography>
-                <Avatar
-                    alt={profileData.name}
-                    src={profileData.avatarUrl}
-                    sx={{
-                        width: 100, // Adjust the avatar size accordingly
-                        height: 100,
-                        margin: '8px 0',
-                        border: '4px solid', // Add a border if you like
-                        borderColor: 'background.paper', // Adjust border color based on your theme
-                    }}
-                />
-                <Typography variant="subtitle1" color="text.secondary">
-                    Learning {currentLanguage}
-                </Typography>
-            </Card>
+            />
+            <Typography variant="subtitle1">
+                Learning {currentLanguage}
+            </Typography>
         </Box>
     );
 };
