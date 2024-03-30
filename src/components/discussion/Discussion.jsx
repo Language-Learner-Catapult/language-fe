@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './discussion.css';
+import firebase from 'firebase';
 
 const Discussion = () => {
     const [talking, setTalking] = useState(false);
@@ -47,8 +48,24 @@ const Discussion = () => {
     }
 
     const uploadAudioToFirebaseJSON = (audioBlob) => {
-        // ... Your Firebase upload logic here ...
-    }
+        const reader = new FileReader();
+
+        reader.readAsDataURL(audioBlob); // Convert audioBlob to Base64 Data URL
+
+        reader.onloadend = () => {
+            const base64data = reader.result;
+
+            // Example JSON Structure
+            const jsonData = {
+                audio: base64data
+            };
+
+            // Assuming you have Firebase configured and a reference 'audioRecords'
+            const firebaseRef = firebase.database().ref('audioRecords');
+            firebaseRef.push(jsonData); // Upload to Firebase
+        };
+    };
+
 
     return (
         <div className={`character ${talking ? 'talk' : ''}`}>
