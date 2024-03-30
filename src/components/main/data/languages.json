@@ -5,15 +5,15 @@
   },
   "Mandarin": {
     "gradient": "linear-gradient(to right, #ffb74d, #ffa726)",
-    "agentName": "Li Wei"
+    "agentName": "Chen"
   },
   "Hindi": {
     "gradient": "linear-gradient(to right, #ffcc80, #ffb74d)",
-    "agentName": "Aarav"
+    "agentName": "Raj"
   },
   "Spanish": {
     "gradient": "linear-gradient(to right, #ef9a9a, #e57373)",
-    "agentName": "Sofia"
+    "agentName": "Carlos"
   },
   "French": {
     "gradient": "linear-gradient(to right, #64b5f6, #42a5f5)",
@@ -21,11 +21,11 @@
   },
   "Arabic": {
     "gradient": "linear-gradient(to right, #ffccbc, #ffab91)",
-    "agentName": "Mohammed"
+    "agentName": "Omar"
   },
   "Bengali": {
     "gradient": "linear-gradient(to right, #4dd0e1, #26c6da)",
-    "agentName": "Anika"
+    "agentName": "Rahim"
   },
   "Russian": {
     "gradient": "linear-gradient(to right, #4fc3f7, #29b6f6)",
@@ -33,15 +33,15 @@
   },
   "Portuguese": {
     "gradient": "linear-gradient(to right, #81c784, #66bb6a)",
-    "agentName": "Gabriela"
+    "agentName": "Mateo"
   },
   "Indonesian": {
     "gradient": "linear-gradient(to right, #ff8a65, #ff7043)",
-    "agentName": "Putri"
+    "agentName": "Budi"
   },
   "Urdu": {
     "gradient": "linear-gradient(to right, #ba68c8, #ab47bc)",
-    "agentName": "Ayesha"
+    "agentName": "Ali"
   },
   "German": {
     "gradient": "linear-gradient(to right, #90a4ae, #78909c)",
@@ -49,43 +49,43 @@
   },
   "Japanese": {
     "gradient": "linear-gradient(to right, #ce93d8, #ba68c8)",
-    "agentName": "Yuki"
+    "agentName": "Hiro"
   },
   "Swahili": {
     "gradient": "linear-gradient(to right, #ffd54f, #ffca28)",
-    "agentName": "Amara"
+    "agentName": "Juma"
   },
   "Marathi": {
     "gradient": "linear-gradient(to right, #aed581, #9ccc65)",
-    "agentName": "Saanvi"
+    "agentName": "Ajit"
   },
   "Telugu": {
     "gradient": "linear-gradient(to right, #80cbc4, #4db6ac)",
-    "agentName": "Arjun"
+    "agentName": "Venkat"
   },
   "Turkish": {
     "gradient": "linear-gradient(to right, #7986cb, #5c6bc0)",
-    "agentName": "Elif"
+    "agentName": "Emir"
   },
   "Korean": {
     "gradient": "linear-gradient(to right, #ffe082, #ffd54f)",
-    "agentName": "Min-ho"
+    "agentName": "Jin"
   },
-  "VietagentNamese": {
+  "Vietnamese": {
     "gradient": "linear-gradient(to right, #ce93d8, #ba68c8)",
-    "agentName": "Phuc"
+    "agentName": "Bao"
   },
   "Italian": {
     "gradient": "linear-gradient(to right, #a5d6a7, #81c784)",
-    "agentName": "Giulia"
+    "agentName": "Luca"
   },
   "Dutch": {
     "gradient": "linear-gradient(to right, #ef9a9a, #e57373)",
-    "agentName": "Emma"
+    "agentName": "Bram"
   },
   "Polish": {
     "gradient": "linear-gradient(to right, #4fc3f7, #29b6f6)",
-    "agentName": "Jakub"
+    "agentName": "Kacper"
   },
   "Thai": {
     "gradient": "linear-gradient(to right, #ec407a, #d81b60)",
@@ -93,31 +93,31 @@
   },
   "Greek": {
     "gradient": "linear-gradient(to right, #7986cb, #5c6bc0)",
-    "agentName": "Eleni"
+    "agentName": "Nikos"
   },
   "Norwegian": {
     "gradient": "linear-gradient(to right, #9fa8da, #7986cb)",
-    "agentName": "Oskar"
+    "agentName": "Erik"
   },
   "Hungarian": {
     "gradient": "linear-gradient(to right, #ef9a9a, #e57373)",
-    "agentName": "Zsófia"
+    "agentName": "Miklós"
   },
   "Finnish": {
     "gradient": "linear-gradient(to right, #b0bec5, #90a4ae)",
-    "agentName": "Aino"
+    "agentName": "Eero"
   },
   "Danish": {
     "gradient": "linear-gradient(to right, #e57373, #ef5350)",
-    "agentName": "Freja"
+    "agentName": "Mads"
   },
   "Czech": {
     "gradient": "linear-gradient(to right, #81d4fa, #4fc3f7)",
-    "agentName": "Jan"
+    "agentName": "Tomas"
   },
   "Romanian": {
     "gradient": "linear-gradient(to right, #9fa8da, #7986cb)",
-    "agentName": "Ioana"
+    "agentName": "Andrei"
   },
   "Slovak": {
     "gradient": "linear-gradient(to right, #a5d6a7, #81c784)",
