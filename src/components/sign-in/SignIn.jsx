@@ -11,7 +11,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { styled } from "@mui/material/styles";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import Cookies from "js-cookie";
-import app from "../../firebaseconfig.js";
+import app from "../../firebaseconfig";
 
 // Move styled components outside SignInDialog to avoid re-creation on re-renders
 const SignInButton = styled(Button)(({ theme }) => ({
