@@ -31,6 +31,7 @@ function Main() {
         return languagesData[currentLanguage].gradient;
     }, [currentLanguage]);
 
+    let userLevel = 'Beginner';
     return (
         <ThemeProvider theme={theme}>
             <LanguageContext.Provider value={{ currentLanguage, setCurrentLanguage }}>
@@ -39,8 +40,13 @@ function Main() {
                         <Toolbar>
                             <LanguageSelector />
                             <Box sx={{ flexGrow: 1 }} />
-                            <Avatar alt={userName} src="/path-to-avatar.jpg" sx={{ width: 40, height: 40 }} />
-                            <Typography sx={{ marginLeft: 1 }}>{userName}</Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <Avatar alt={userName} src="/path-to-avatar.jpg" sx={{ width: 40, height: 40 }} />
+                                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                                    <Typography variant="subtitle1">{Cookies.get("user_id")}</Typography>
+                                    <Typography variant="caption">{`Level: ${userLevel}`}</Typography>
+                                </Box>
+                            </Box>
                         </Toolbar>
                     </AppBar>
                     <Container component="main" sx={{ flexGrow: 1, overflow: 'auto', padding: '20px'}}>
@@ -49,7 +55,7 @@ function Main() {
                                 <SessionDetails />
                             </Grid>
                             <Grid item xs={12} md={4}>
-                                <ProfileCard name = {languagesData[currentLanguage].agentName} image = {languagesData[currentLanguage].image}/>
+                                <ProfileCard/>
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <LearningProgress />

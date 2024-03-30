@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 import { Typography, Box } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import { LanguageContext } from '../language-context/LanguageContext';
+import languagesData from '../data/languages.json';
 
-const ProfileCard = ({name, image}) => {
+const ProfileCard = () => {
     const { currentLanguage } = useContext(LanguageContext);
-
-    // Dummy data for the profile, replace with actual data from your backend
     const profileData = {
-        name: name,
-        avatarUrl: image, // Replace with actual path
+        name: languagesData[currentLanguage].agentName,
+        avatarUrl: languagesData[currentLanguage].image // Ensure this points to the correct image path
     };
+    console.log(profileData.avatarUrl)
 
     return (
         <Box
@@ -34,8 +34,8 @@ const ProfileCard = ({name, image}) => {
                 alt={profileData.name}
                 src={profileData.avatarUrl}
                 sx={{
-                    width: 120, // Adjust the avatar size accordingly
-                    height: 120,
+                    width: 180, // Adjust the avatar size accordingly
+                    height: 180,
                     margin: '8px 0',
                     // If your background is light, consider adding a subtle shadow for depth
                     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
