@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import Main from './components/main/Main';
 import LandingPage from './components/landing/Landing';
 import Discussion from './components/discussion/Discussion'
+import Profile from './components/profile/Profile';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(null);
@@ -25,6 +26,10 @@ function App() {
         <Route
           path="/learn"
           element={authenticated ? <Main /> : <Navigate to="/" replace />}
+        />
+        <Route
+            path="/profile"
+            element={authenticated ? <Profile /> : <Navigate to="/" replace />}
         />
       </Routes>
     </BrowserRouter>

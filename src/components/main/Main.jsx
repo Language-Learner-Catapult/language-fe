@@ -17,6 +17,7 @@ import Footer from './footer/Footer';
 import { LanguageContext } from './language-context/LanguageContext';
 import languagesData from './data/languages.json';
 import theme from "./theme";
+import UserProfileButton from "./user-profile-button/UserProfileButton";
 
 
 function Main() {
@@ -49,22 +50,7 @@ function Main() {
                         <Toolbar>
                             <LanguageSelector sx={{ border: 'none', boxShadow: 'none' }} />
                             <Box sx={{ flexGrow: 1 }} />
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '10px',
-                                    borderRadius: '10px', // Add rounded corners
-                                    border: '1px solid #ccc', // Add border for the rectangle (optional)
-                                    padding: '5px', // Add some padding inside the rounded rectangle (optional)
-                                }}
-                            >
-                                <Avatar alt={userName} src="/path-to-avatar.jpg" sx={{ width: 40, height: 40 }} />
-                                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                                    <Typography variant="subtitle1">{Cookies.get("user_id")}</Typography>
-                                    <Typography variant="caption">{`Level: ${userLevel}`}</Typography>
-                                </Box>
-                            </Box>
+                            <UserProfileButton/>
                         </Toolbar>
 
                     </AppBar>
