@@ -50,6 +50,7 @@ function Main() {
                         <Toolbar>
                             <LanguageSelector sx={{ border: 'none', boxShadow: 'none' }} />
                             <Box sx={{ flexGrow: 1 }} />
+
                             <UserProfileButton/>
                         </Toolbar>
 
