@@ -1,98 +1,130 @@
 {
   "English": {
-    "gradient": "linear-gradient(to right, #9bc5c3, #5a9faa)"
+    "gradient": "linear-gradient(to right, #9bc5c3, #5a9faa)",
+    "agentName": "Oliver"
   },
   "Mandarin": {
-    "gradient": "linear-gradient(to right, #ffb74d, #ffa726)"
+    "gradient": "linear-gradient(to right, #ffb74d, #ffa726)",
+    "agentName": "Li Wei"
   },
   "Hindi": {
-    "gradient": "linear-gradient(to right, #ffcc80, #ffb74d)"
+    "gradient": "linear-gradient(to right, #ffcc80, #ffb74d)",
+    "agentName": "Aarav"
   },
   "Spanish": {
-    "gradient": "linear-gradient(to right, #ef9a9a, #e57373)"
+    "gradient": "linear-gradient(to right, #ef9a9a, #e57373)",
+    "agentName": "Sofia"
   },
   "French": {
-    "gradient": "linear-gradient(to right, #64b5f6, #42a5f5)"
+    "gradient": "linear-gradient(to right, #64b5f6, #42a5f5)",
+    "agentName": "Lucas"
   },
   "Arabic": {
-    "gradient": "linear-gradient(to right, #ffccbc, #ffab91)"
+    "gradient": "linear-gradient(to right, #ffccbc, #ffab91)",
+    "agentName": "Mohammed"
   },
   "Bengali": {
-    "gradient": "linear-gradient(to right, #4dd0e1, #26c6da)"
+    "gradient": "linear-gradient(to right, #4dd0e1, #26c6da)",
+    "agentName": "Anika"
   },
   "Russian": {
-    "gradient": "linear-gradient(to right, #4fc3f7, #29b6f6)"
+    "gradient": "linear-gradient(to right, #4fc3f7, #29b6f6)",
+    "agentName": "Ivan"
   },
   "Portuguese": {
-    "gradient": "linear-gradient(to right, #81c784, #66bb6a)"
+    "gradient": "linear-gradient(to right, #81c784, #66bb6a)",
+    "agentName": "Gabriela"
   },
   "Indonesian": {
-    "gradient": "linear-gradient(to right, #ff8a65, #ff7043)"
+    "gradient": "linear-gradient(to right, #ff8a65, #ff7043)",
+    "agentName": "Putri"
   },
   "Urdu": {
-    "gradient": "linear-gradient(to right, #ba68c8, #ab47bc)"
+    "gradient": "linear-gradient(to right, #ba68c8, #ab47bc)",
+    "agentName": "Ayesha"
   },
   "German": {
-    "gradient": "linear-gradient(to right, #90a4ae, #78909c)"
+    "gradient": "linear-gradient(to right, #90a4ae, #78909c)",
+    "agentName": "Max"
   },
   "Japanese": {
-    "gradient": "linear-gradient(to right, #ce93d8, #ba68c8)"
+    "gradient": "linear-gradient(to right, #ce93d8, #ba68c8)",
+    "agentName": "Yuki"
   },
   "Swahili": {
-    "gradient": "linear-gradient(to right, #ffd54f, #ffca28)"
+    "gradient": "linear-gradient(to right, #ffd54f, #ffca28)",
+    "agentName": "Amara"
   },
   "Marathi": {
-    "gradient": "linear-gradient(to right, #aed581, #9ccc65)"
+    "gradient": "linear-gradient(to right, #aed581, #9ccc65)",
+    "agentName": "Saanvi"
   },
   "Telugu": {
-    "gradient": "linear-gradient(to right, #80cbc4, #4db6ac)"
+    "gradient": "linear-gradient(to right, #80cbc4, #4db6ac)",
+    "agentName": "Arjun"
   },
   "Turkish": {
-    "gradient": "linear-gradient(to right, #7986cb, #5c6bc0)"
+    "gradient": "linear-gradient(to right, #7986cb, #5c6bc0)",
+    "agentName": "Elif"
   },
   "Korean": {
-    "gradient": "linear-gradient(to right, #ffe082, #ffd54f)"
+    "gradient": "linear-gradient(to right, #ffe082, #ffd54f)",
+    "agentName": "Min-ho"
   },
-  "Vietnamese": {
-    "gradient": "linear-gradient(to right, #ce93d8, #ba68c8)"
+  "VietagentNamese": {
+    "gradient": "linear-gradient(to right, #ce93d8, #ba68c8)",
+    "agentName": "Phuc"
   },
   "Italian": {
-    "gradient": "linear-gradient(to right, #a5d6a7, #81c784)"
+    "gradient": "linear-gradient(to right, #a5d6a7, #81c784)",
+    "agentName": "Giulia"
   },
   "Dutch": {
-    "gradient": "linear-gradient(to right, #ef9a9a, #e57373)"
+    "gradient": "linear-gradient(to right, #ef9a9a, #e57373)",
+    "agentName": "Emma"
   },
   "Polish": {
-    "gradient": "linear-gradient(to right, #4fc3f7, #29b6f6)"
+    "gradient": "linear-gradient(to right, #4fc3f7, #29b6f6)",
+    "agentName": "Jakub"
   },
   "Thai": {
-    "gradient": "linear-gradient(to right, #ec407a, #d81b60)"
+    "gradient": "linear-gradient(to right, #ec407a, #d81b60)",
+    "agentName": "Somchai"
   },
   "Greek": {
-    "gradient": "linear-gradient(to right, #7986cb, #5c6bc0)"
+    "gradient": "linear-gradient(to right, #7986cb, #5c6bc0)",
+    "agentName": "Eleni"
   },
   "Norwegian": {
-    "gradient": "linear-gradient(to right, #9fa8da, #7986cb)"
+    "gradient": "linear-gradient(to right, #9fa8da, #7986cb)",
+    "agentName": "Oskar"
   },
   "Hungarian": {
-    "gradient": "linear-gradient(to right, #ef9a9a, #e57373)"
+    "gradient": "linear-gradient(to right, #ef9a9a, #e57373)",
+    "agentName": "Zsófia"
   },
   "Finnish": {
-    "gradient": "linear-gradient(to right, #b0bec5, #90a4ae)"
+    "gradient": "linear-gradient(to right, #b0bec5, #90a4ae)",
+    "agentName": "Aino"
   },
   "Danish": {
-    "gradient": "linear-gradient(to right, #e57373, #ef5350)"
+    "gradient": "linear-gradient(to right, #e57373, #ef5350)",
+    "agentName": "Freja"
   },
   "Czech": {
-    "gradient": "linear-gradient(to right, #81d4fa, #4fc3f7)"
+    "gradient": "linear-gradient(to right, #81d4fa, #4fc3f7)",
+    "agentName": "Jan"
   },
   "Romanian": {
-    "gradient": "linear-gradient(to right, #9fa8da, #7986cb)"
+    "gradient": "linear-gradient(to right, #9fa8da, #7986cb)",
+    "agentName": "Ioana"
   },
   "Slovak": {
-    "gradient": "linear-gradient(to right, #a5d6a7, #81c784)"
+    "gradient": "linear-gradient(to right, #a5d6a7, #81c784)",
+    "agentName": "Lukas"
   },
   "Bulgarian": {
-    "gradient": "linear-gradient(to right, #ef9a9a, #e57373)"
+    "gradient": "linear-gradient(to right, #ef9a9a, #e57373)",
+    "agentName": "Ivan"
   }
 }

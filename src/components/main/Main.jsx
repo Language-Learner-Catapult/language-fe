@@ -29,14 +29,15 @@ function Main() {
     useEffect(() => {
         const userId = Cookies.get('user_id');
         // Your fetch logic here
-        setUserName('John Doe'); // Replace with fetched data
+        setUserName(userId); // Replace with fetched data
     }, []);
 
-
+    function getName(){
+        return languagesData[currentLanguage].agentName;
+    }
     const languageGradient = useMemo(() => {
         return languagesData[currentLanguage].gradient;
     }, [currentLanguage]);
-
     return (
         <ThemeProvider theme={theme}>
             <LanguageContext.Provider value={{ currentLanguage, setCurrentLanguage }}>
@@ -57,7 +58,7 @@ function Main() {
                     <Container component="main" sx={{ flexGrow: 1, overflow: 'auto', padding: '0px 0' }}>
                         <Grid container spacing={3}>
                             <Grid item xs={12} md={8} lg={6}>
-                                <ProfileCard />
+                                <ProfileCard name = {getName()}/>
                             </Grid>
                             <Grid item xs={12} md={4} lg={6}>
                                 <SessionStats />

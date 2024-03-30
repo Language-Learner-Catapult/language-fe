@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './discussion.css';
-import firebase from 'firebase';
+import app from '../../firebaseconfig';
+import {getFirestore} from "firebase/firestore";
 
 const Discussion = () => {
+    const db = getFirestore(app);
     const [talking, setTalking] = useState(false);
     const mediaRecorderRef = useRef(null);
 
@@ -61,7 +63,7 @@ const Discussion = () => {
             };
 
             // Assuming you have Firebase configured and a reference 'audioRecords'
-            const firebaseRef = firebase.database().ref('audioRecords');
+            const firebaseRef = db.ref('audioRecords');
             firebaseRef.push(jsonData); // Upload to Firebase
         };
     };
