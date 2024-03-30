@@ -49,7 +49,7 @@ function Main() {
                                 <SessionDetails />
                             </Grid>
                             <Grid item xs={12} md={4}>
-                                <ProfileCard />
+                                <ProfileCard name = {languagesData[currentLanguage].agentName} image = {languagesData[currentLanguage].image}/>
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <LearningProgress />

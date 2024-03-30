@@ -3,13 +3,13 @@ import { Typography, Box } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import { LanguageContext } from '../language-context/LanguageContext';
 
-const ProfileCard = ({name}) => {
+const ProfileCard = ({name, image}) => {
     const { currentLanguage } = useContext(LanguageContext);
 
     // Dummy data for the profile, replace with actual data from your backend
     const profileData = {
         name: name,
-        avatarUrl: "/path-to-avatar.jpg", // Replace with actual path
+        avatarUrl: image, // Replace with actual path
     };
 
     return (
