@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Main from './components/main/Main';
 import LandingPage from './components/landing/Landing';
+import Discussion from './components/discussion/Discussion'
 
 function App() {
   const [authenticated, setAuthenticated] = useState(null);
@@ -25,6 +26,9 @@ function App() {
           path="/learn"
           element={authenticated ? <Main /> : <Navigate to="/" replace />}
         />
+        <Route
+          path="/discussion"
+          element={authenticated ? <Discussion /> : <Navigate to="/discussion" replace />}/>
       </Routes>
     </BrowserRouter>
   );

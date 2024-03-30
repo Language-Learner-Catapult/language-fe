@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-
 const ScrollDownButton = () => {
     const theme = useTheme();
     const navigate = useNavigate();

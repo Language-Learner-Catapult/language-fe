@@ -1,0 +1,25 @@
+.character {
+    width: 100px;
+    height: 100px;
+    background-color: #3ab9ae;
+    position: relative;
+    border-radius: 50%; /* Make it a circle */
+    overflow: hidden; /* Hide the wave overflow */
+}
+
+.character::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%; /* Slightly larger than the circle */
+    height: 120%;
+    background: radial-gradient(circle closest-side, #7ad5d4 50%, transparent 51%);
+    animation: wave 1s infinite alternate;
+}
+
+@keyframes wave {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    100% { transform: translate(-50%, -50%) scale(1.2); }
+}
