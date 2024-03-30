@@ -17,6 +17,7 @@ import Footer from './footer/Footer';
 import { LanguageContext } from './language-context/LanguageContext';
 import languagesData from './data/languages.json';
 import theme from "./theme";
+import UserProfileButton from "./user-profile-button/UserProfileButton";
 
 
 function Main() {
@@ -38,26 +39,24 @@ function Main() {
             <LanguageContext.Provider value={{ currentLanguage, setCurrentLanguage }}>
                 <Box sx={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', background: languageGradient }}>
                     <AppBar
-                        position="static" elevation={1} sx={{
+                        position="static"
+                        sx={{
                         height: '10vh',
                         justifyContent: 'center',
-                        backgroundImage: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-                        }}
-                    >
+                        background: 'transparent',
+                        boxShadow: 'none', // Remove drop shadow
+                    }}
+                        >
                         <Toolbar>
-                             <LanguageSelector/>
+                            <LanguageSelector sx={{ border: 'none', boxShadow: 'none' }} />
                             <Box sx={{ flexGrow: 1 }} />
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                <Avatar alt={userName} src="/path-to-avatar.jpg" sx={{ width: 40, height: 40 }} />
-                                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                                    <Typography variant="subtitle1">{Cookies.get("user_id")}</Typography>
-                                    <Typography variant="caption">{`Level: ${userLevel}`}</Typography>
-                                </Box>
-                            </Box>
+                            <UserProfileButton/>
                         </Toolbar>
+
                     </AppBar>
 
-                    <Container component="main" sx={{ flexGrow: 1, overflow: 'auto', padding: '20px'}}>
+
+                <Container component="main" sx={{ flexGrow: 1, overflow: 'auto', padding: '20px'}}>
                         <Grid container spacing={3} alignItems="center" justifyContent="center">
                             <Grid item xs={12} md={4}>
                                 {/*  <SessionDetails />*/}

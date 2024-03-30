@@ -1,31 +1,56 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
 import { LanguageContext } from "../language-context/LanguageContext";
 import languagesData from "../data/languages.json";
 import Discussion from "../../discussion/Discussion.jsx";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const ProfileCard = () => {
 	const { currentLanguage } = useContext(LanguageContext);
 	const [talking, setTalking] = useState(false);
 	const profileData = {
 		name: languagesData[currentLanguage].agentName,
-		// avatarUrl will not be used for the image anymore
 	};
 
-	// Function to generate random animation for each bar
-	const generateAnimation = () => ({
-		hidden: { scaleY: 0.2 },
-		show: {
-			scaleY: [0.2, Math.random() + 0.5, Math.random()],
+	const animationStates = {
+		IDLE: {
+			scale: 1,
 			transition: {
-				duration: Math.random() * 0.5 + 0.5, // Random duration between 0.5 to 1 second
-				ease: "easeInOut",
+				duration: 2,
 				repeat: Infinity,
-				repeatType: "mirror",
+				repeatType: "reverse",
+				ease: "easeInOut",
 			},
 		},
-	});
+		EXCITED: {
+			scale: [1, 1.1],
+			rotate: [0, 20, -20, 20, 0],
+			transition: {
+				duration: 0.2,
+				repeat: Infinity,
+				repeatType: "reverse",
+				ease: "easeInOut",
+			},
+		},
+		THINKING: {
+			x: [-10, 0, 10],
+			scale: 0.98,
+			boxShadow: [
+				"0 0 8px rgba(255,255,255,0.5)",
+				"0 0 12px rgba(255,255,255,0.8)",
+				"0 0 8px rgba(255,255,255,0.5)",
+			],
+			transition: {
+				duration: 4,
+				repeat: Infinity,
+				repeatType: "reverse",
+				ease: "easeInOut",
+			},
+		},
+	};
+
+	// We will need a piece of state to hold and change the animation state
+	const [animationState, setAnimationState] = React.useState("IDLE");
 
 	return (
 		<Box
@@ -44,33 +69,24 @@ const ProfileCard = () => {
 			<Typography variant="h5" component="h2" gutterBottom>
 				{profileData.name}
 			</Typography>
-			{/* Animated Bars with Separate Random Animations */}
-			<Box
-				sx={{
+			{/* Enhanced Circular Breathing Animation for Pixar-like liveliness */}
+			<motion.div
+				style={{
 					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
 					height: 180,
-					margin: "8px 0",
+					width: 180,
+					borderRadius: "50%",
+					background: "linear-gradient(#FDC830, #F37335)",
+					boxShadow: "0 0 8px rgba(255,255,255,0.5)",
 				}}
-			>
-				<AnimatePresence>
-					{Array.from({ length: 4 }).map((_, index) => (
-						<motion.div
-							key={`bar-${index}`}
-							style={{
-								background: "white",
-								width: "20px",
-								height: "100%",
-								margin: "0 2px",
-								borderRadius: "10px",
-								originY: 1, // Animation origin at the bottom
-							}}
-							variants={generateAnimation()} // Call generateAnimation to get unique animations
-							initial="hidden"
-							animate="show"
-						/>
-					))}
-				</AnimatePresence>
-			</Box>
+				variants={animationStates}
+				initial="IDLE"
+				animate={animationState}
+				// onClick or other event handlers can be used to change the state
+				// For example, onClick={() => setAnimationState('EXCITED')}
+			/>
 			<Discussion setTalking={setTalking} />
 			<Typography variant="subtitle1">Learning {currentLanguage}</Typography>
 		</Box>
