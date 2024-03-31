@@ -39,9 +39,6 @@ function Main() {
 		fetchProfile();
 	}, []);
 
-	const languageGradient = useMemo(() => {
-		return languagesData[currentLanguage].gradient;
-	}, [currentLanguage]);
 
 	let userLevel = "Beginner";
 	return (
@@ -53,7 +50,7 @@ function Main() {
 						minHeight: "100vh",
 						display: "flex",
 						flexDirection: "column",
-						background: languageGradient,
+						background: "linear-gradient(to right, #ff7057, #bdaa4f)",
 					}}
 				>
 					<AppBar
