@@ -6,11 +6,14 @@ import { doc, getFirestore, setDoc } from "firebase/firestore";
 import Cookies from "js-cookie";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import MicOffIcon from "@mui/icons-material/MicOff";
+import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 
 const Discussion = (props) => {
 	const db = getFirestore(app);
 	const mediaRecorderRef = useRef(null);
 	const effectRan = useRef(false);
+	const [isRecording, setIsRecording] = useState(false); // Added state to track recording status
 
 	useEffect(() => {
 		console.log(props);
@@ -41,6 +44,14 @@ const Discussion = (props) => {
 		return () => (effectRan.current = true);
 	}, []);
 
+	const toggleRecording = async () => {
+		if (isRecording) {
+			stopRecording();
+		} else {
+			await startRecording();
+		}
+	};
+
 	const startRecording = async () => {
 		props.setAnimationState("THINKING");
 		try {
@@ -58,6 +69,7 @@ const Discussion = (props) => {
 				handleDataAvailable
 			);
 			mediaRecorderRef.current.start();
+			setIsRecording(true); // Update recording status
 		} catch (err) {
 			console.error("Error accessing microphone:", err);
 			props.setAnimationState("IDLE"); // Stop talking if there is an error
@@ -67,6 +79,7 @@ const Discussion = (props) => {
 	const stopRecording = () => {
 		if (mediaRecorderRef.current) {
 			mediaRecorderRef.current.stop();
+			setIsRecording(false); // Update recording status
 		}
 	};
 
@@ -111,7 +124,6 @@ const Discussion = (props) => {
 					}, 4000);
 				});
 
-			// let uuid = uuidv4();
 			// await setDoc(
 			// 	doc(db, "audioRecords", Cookies.get("user_id"), Cookies.get("user_id")),
 			// 	base64data
@@ -121,8 +133,9 @@ const Discussion = (props) => {
 
 	return (
 		<>
-			<button onClick={startRecording}>Start Recording</button>
-			<button onClick={stopRecording}>Stop Recording</button>
+			<button onClick={toggleRecording}>
+				{isRecording ? <MicOffIcon /> : <KeyboardVoiceIcon />}
+			</button>
 		</>
 	);
 };
