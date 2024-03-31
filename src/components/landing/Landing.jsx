@@ -139,21 +139,22 @@ const LandingPage = ({ setAuthenticated }) => {
 					<Grid item xs={12} md={6}>
 						<Box
 							sx={{
-								backgroundColor: "rgba(255, 255, 255, 0.8)",
+								// backgroundColor: "rgba(255, 255, 255, 0.8)",
 								borderRadius: "16px",
-								padding: "2rem",
+								padding: "10px",
 								textAlign: "center",
 							}}
 						>
 							{/* Placeholder for phone mockup */}
-							<Box
-								sx={{
-									width: "100%",
-									height: "400px",
+                            <img
+                                src={process.env.PUBLIC_URL + "/lingua_mockup.png"}
+                                alt="lingua logo"
+                                style={{
+									width: "400px",
 									backgroundColor: "lightgray",
 									borderRadius: "16px",
 								}}
-							/>
+						    />
 						</Box>
 					</Grid>
 				</Grid>

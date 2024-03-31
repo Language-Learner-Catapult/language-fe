@@ -24,7 +24,7 @@ import UserProfileButton from "./user-profile-button/UserProfileButton";
 function Main() {
 	const [currentLanguage, setCurrentLanguage] = useState("Spanish");
 	const [profile, setProfile] = useState("");
-	const [fluency, updateFluency] = useState("20/100");
+	const [fluency, updateFluency] = useState(20);
 
 	useEffect(() => {
 		const fetchProfile = async () => {
@@ -126,7 +126,7 @@ function Main() {
 										transform: "translate(-50%, -50%)",
 									}}
 								>
-									Fluency Score {fluency}
+									Fluency Score {fluency}/100
 								</Typography>
 							</Grid>
 							<Grid item xs={12} md={4}></Grid>

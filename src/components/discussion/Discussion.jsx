@@ -15,7 +15,7 @@ const Discussion = (props) => {
 	const mediaRecorderRef = useRef(null);
 	const effectRan = useRef(false);
 	const [isRecording, setIsRecording] = useState(false); // Added state to track recording status
-	const [fluencyScore, setFluencyScore] = useState("20/100 (Beginner)");
+	const [fluencyScore, setFluencyScore] = useState(20);
 
 	useEffect(() => {
 		console.log(props);
@@ -58,12 +58,22 @@ const Discussion = (props) => {
 		props.setAnimationState("THINKING");
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-
-			var speech = hark(stream); // init hark stream
-			speech.setInterval(500);
+			const options = {
+				threshold: -70, // Volume threshold in dB
+			};
+			var speech = hark(stream, options); // init hark stream
+			let stopTimeout;
 			speech.on("stopped_speaking", function () {
-				stopRecording();
-				console.log("stopped");
+				// Start a timeout when stopped speaking is detected
+				stopTimeout = setTimeout(() => {
+					stopRecording();
+					console.log("stopped_speaking");
+				}, 2000); // Wait for 1 second before actually stopping the recording
+			});
+
+			speech.on("speaking", function () {
+				console.log("started_speaking");
+				clearTimeout(stopTimeout);
 			});
 
 			let mimeType = "audio/wav";
@@ -112,6 +122,7 @@ const Discussion = (props) => {
 				audio: reader.result,
 				name: props.agentName,
 				language: props.language,
+				proficiency: fluencyScore,
 			};
 
 			axios
