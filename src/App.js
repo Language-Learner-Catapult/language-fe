@@ -50,7 +50,7 @@ function App() {
           />
           <Route
               path="/profile"
-              element={authenticated ? <Profile onProfileUpdate={fetchProfileStatus} /> : <Navigate to="/" replace />}
+              element={authenticated ? <Profile onProfileUpdate={fetchProfileStatus} setter = {setIsProfileSet} /> : <Navigate to="/" replace />}
           />
         </Routes>
       </BrowserRouter>

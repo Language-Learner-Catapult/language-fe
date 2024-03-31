@@ -7,7 +7,7 @@ import UserProfileForm from './UserProfileForm';
 import ProfileDisplay from './ProfileDisplay';
 import Cookies from 'js-cookie';
 
-const Profile = () => {
+const Profile = ({setter}) => {
     const userId = Cookies.get('user_id');
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -32,6 +32,7 @@ const Profile = () => {
         try {
             await setDoc(profileRef, profileData);
             setProfile(profileData);
+            setter(true);
             navigate('/learn'); // Navigate after successful save
         } catch (error) {
             console.error('Error saving profile:', error);
