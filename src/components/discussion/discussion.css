@@ -1,17 +1,10 @@
-.character {
-    /* Your existing styles for character */
-}
-
-.mouth {
-    /* Your existing styles for mouth */
-}
 
 button {
-    background: linear-gradient(#141E30, #243B55); /* Material Design purple */
+    background: linear-gradient(#141E30, #243B55);
     color: #ffffff;
     border: none;
-    padding: 8px 16px;
-    margin: 4px;
+    padding: 5px 80px;
+    margin: 4vh;
     border-radius: 4px;
     cursor: pointer;
     font-family: 'Roboto','Helvetica','Arial',sans-serif;
@@ -25,14 +18,14 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(#293750, #346296); /* A darker purple for hover */
+    background: linear-gradient(#293750, #346296);
     box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),
     0px 4px 5px 0px rgba(0,0,0,0.14),
     0px 1px 10px 0px rgba(0,0,0,0.12);
 }
 
 button:active {
-    background: #141E30 /* Even darker for the ripple effect simulation */
+    background: #141E30
 }
 
 /* If your project supports CSS-in-JS or similar, you can inline these styles. */
