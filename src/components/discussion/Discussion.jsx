@@ -15,6 +15,7 @@ const Discussion = (props) => {
 	const mediaRecorderRef = useRef(null);
 	const effectRan = useRef(false);
 	const [isRecording, setIsRecording] = useState(false); // Added state to track recording status
+	const [fluencyScore, setFluencyScore] = useState("20/100 (Beginner)");
 
 	useEffect(() => {
 		console.log(props);
@@ -37,7 +38,7 @@ const Discussion = (props) => {
 						sound.play();
 						setTimeout(() => {
 							props.setAnimationState("IDLE");
-						}, 20000);
+						}, 4000);
 					});
 			}
 		}
@@ -84,7 +85,6 @@ const Discussion = (props) => {
 			props.setAnimationState("IDLE");
 			console.error("Error accessing microphone:", err);
 			props.setAnimationState("IDLE"); // Stop talking if there is an error
-
 		}
 	};
 
@@ -125,6 +125,7 @@ const Discussion = (props) => {
 				)
 				.then((response) => {
 					props.setAnimationState("EXCITED");
+					props.updateFluency(response.data.fluency);
 					const sound = new UIFx(
 						"data:audio/webm;base64," + response.data.audio,
 						{
@@ -147,7 +148,19 @@ const Discussion = (props) => {
 	return (
 		<>
 			<button onClick={toggleRecording}>
-				{isRecording ? <MicOffOutlinedIcon fontSize={'large'} style={{color:'white'}} className={"svg_icons"}/> : <MicOutlinedIcon fontSize={'large'} style={{color:'white'}} className={"svg_icons"}/>}
+				{isRecording ? (
+					<MicOffOutlinedIcon
+						fontSize={"large"}
+						style={{ color: "white" }}
+						className={"svg_icons"}
+					/>
+				) : (
+					<MicOutlinedIcon
+						fontSize={"large"}
+						style={{ color: "white" }}
+						className={"svg_icons"}
+					/>
+				)}
 			</button>
 		</>
 	);

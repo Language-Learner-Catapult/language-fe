@@ -5,8 +5,7 @@ import languagesData from "../data/languages.json";
 import Discussion from "../../discussion/Discussion.jsx";
 import { motion } from "framer-motion";
 
-
-const ProfileCard = () => {
+const ProfileCard = (props) => {
 	const { currentLanguage } = useContext(LanguageContext);
 	const profileData = {
 		name: languagesData[currentLanguage].agentName,
@@ -60,17 +59,13 @@ const ProfileCard = () => {
 				flexDirection: "column",
 				alignItems: "center",
 				position: "absolute",
-				top: "35%",
+				top: "40%",
 				left: "50%",
 				transform: "translate(-50%, -50%)",
 				textAlign: "center",
 				color: "white",
 			}}
 		>
-			<Typography variant="h5" component="h2" gutterBottom>
-				{profileData.name}
-			</Typography>
-
 			<motion.div
 				style={{
 					display: "flex",
@@ -89,11 +84,11 @@ const ProfileCard = () => {
 				// For example, onClick={() => setAnimationState('EXCITED')}
 			/>
 			<Discussion
+				updateFluency={props.updateFluency}
 				agentName={profileData.name}
 				language={currentLanguage}
 				setAnimationState={setAnimationState}
 			/>
-			<Typography variant="subtitle1">Learning {currentLanguage}</Typography>
 		</Box>
 	);
 };

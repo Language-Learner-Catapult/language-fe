@@ -24,6 +24,7 @@ import UserProfileButton from "./user-profile-button/UserProfileButton";
 function Main() {
 	const [currentLanguage, setCurrentLanguage] = useState("Spanish");
 	const [profile, setProfile] = useState("");
+	const [fluency, updateFluency] = useState("20/100");
 
 	useEffect(() => {
 		const fetchProfile = async () => {
@@ -38,7 +39,6 @@ function Main() {
 
 		fetchProfile();
 	}, []);
-
 
 	let userLevel = "Beginner";
 	return (
@@ -97,11 +97,53 @@ function Main() {
 								{/*  <SessionDetails />*/}
 							</Grid>
 							<Grid item xs={12} md={4}>
-								<ProfileCard />
+								<ProfileCard updateFluency={updateFluency} />
+								<Typography
+									variant="h2"
+									component="h2"
+									sx={{
+										flexGrow: 1,
+										color: "white",
+										textAlign: "center",
+										position: "absolute",
+										top: "25%",
+										left: "50%",
+										transform: "translate(-50%, -50%)",
+									}}
+								>
+									{languagesData[currentLanguage].agentName}
+								</Typography>
+
+								<Typography
+									variant="title1"
+									sx={{
+										flexGrow: 1,
+										color: "white",
+										textAlign: "center",
+										position: "absolute",
+										top: "75%",
+										left: "50%",
+										transform: "translate(-50%, -50%)",
+									}}
+								>
+									Learning {currentLanguage}
+								</Typography>
+								<Typography
+									variant="title1"
+									sx={{
+										flexGrow: 1,
+										color: "white",
+										textAlign: "center",
+										position: "absolute",
+										top: "79%",
+										left: "50%",
+										transform: "translate(-50%, -50%)",
+									}}
+								>
+									Fluency Score {fluency}
+								</Typography>
 							</Grid>
-							<Grid item xs={12} md={4}>
-								{/*<LearningProgress />*/}
-							</Grid>
+							<Grid item xs={12} md={4}></Grid>
 						</Grid>
 					</Container>
 					<Footer />
