@@ -4,6 +4,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebaseconfig';
 import Cookies from 'js-cookie';
 import languagesData from '../main/data/languages.json';
+import app from '../../App'
 import {
     TextField,
     Button,
@@ -51,6 +52,7 @@ const UserProfileForm = ({ onSave }) => {
         try {
             await setDoc(profileDocRef, formData);
             onSave(formData);  // Assuming onSave updates the parent state or context
+
             navigate('/learn');  // Navigate after successful profile update
         } catch (error) {
             console.error("Error saving profile:", error);

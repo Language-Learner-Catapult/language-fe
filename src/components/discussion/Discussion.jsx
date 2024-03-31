@@ -66,22 +66,22 @@ const Discussion = (props) => {
 		reader.onloadend = async () => {
 			const base64data = { audio: reader.result };
 
-			axios
-				.post(
-					"http://localhost:5000/messages/" +
-						Cookies.get("thread_id") +
-						"/send",
-					base64data
-				)
-				.then(async (response) => {
-					const sound = new UIFx(
-						"data:audio/webm;base64," + response.data.audio,
-						{
-							volume: 0.8,
-						}
-					);
-					sound.play();
-				});
+			// axios
+				//.post(
+					//"http://localhost:5000/messages/" +
+						//Cookies.get("thread_id") +
+						//"/send",
+					//base64data
+				//)
+				//.then(async (response) => {
+				//	const sound = new UIFx(
+				//		"data:audio/webm;base64," + response.data.audio,
+				//		{
+				//			volume: 0.8,
+				//		}
+				//	);
+					// sound.play();
+				// });
 
 			let uuid = uuidv4();
 			await setDoc(

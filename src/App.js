@@ -22,6 +22,7 @@ function App() {
       const docSnap = await getDoc(docRef);
       setIsProfileSet(docSnap.exists());
       if(docSnap.exists()) {
+        setIsProfileSet(true);
         Cookies.set("profile", true, {expires:1});
       }
       setAuthenticated(true);
