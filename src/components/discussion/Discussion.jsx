@@ -124,7 +124,7 @@ const Discussion = (props) => {
 					sound.play();
 					setTimeout(() => {
 						props.setAnimationState("IDLE");
-					}, 4000);
+					}, 14000);
 				});
 
 			// await setDoc(
