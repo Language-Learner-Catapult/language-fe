@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useTheme } from '@mui/material/styles';
+import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';import { useTheme } from '@mui/material/styles';
 // Removed the unused useNavigate import
 import { db } from '../../../firebaseconfig';
 import { doc, getDoc } from "firebase/firestore";
@@ -12,7 +11,7 @@ const ScrollDownButton = () => {
     const [transcriptText, setTranscriptText] = useState('');
     const [error, setError] = useState('');
 
-    async function handleTranscript() {
+    async function handleReset() {
         const docRef = doc(db, "textTest", "yDJwVRGdSl7L85F7Ov7t");
         try {
             const docSnap = await getDoc(docRef);
@@ -42,7 +41,7 @@ const ScrollDownButton = () => {
                 variant="h6"
                 style={{ marginBottom: theme.spacing(1), color: 'white' }}
             >
-                See Transcription
+                Restart Conversation
             </Typography>
             {/* Display the fetched transcript text or error */}
             {transcriptText && (
@@ -66,9 +65,9 @@ const ScrollDownButton = () => {
                     minWidth: 0,
                     minHeight: 0,
                 }}
-                onClick={handleTranscript}
+                onClick={handleReset}
             >
-                <KeyboardArrowDownIcon style={{ fontSize: '1.5rem' }} />
+                <SettingsBackupRestoreIcon style={{ fontSize: '1.5rem' }} />
             </Button>
         </div>
     );
