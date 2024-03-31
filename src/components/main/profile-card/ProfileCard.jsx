@@ -14,36 +14,30 @@ const ProfileCard = () => {
 
 	const animationStates = {
 		IDLE: {
-			scale: 1,
+			scale: [0.7, 1.0, 0.7, 1.0, 0.7], // Erratically change scale
+			rotate: [0, 10, -10, 10, 0], // Add rotation for dynamic effect
 			transition: {
-				duration: 2,
+				duration: 8, // Speed up the transition for an erratic effect
 				repeat: Infinity,
-				repeatType: "reverse",
-				ease: "easeInOut",
+				ease: "linear", // Use a linear easing for a more erratic feel
 			},
 		},
 		EXCITED: {
-			scale: [1, 1.1],
-			rotate: [0, 20, -20, 20, 0],
+			scale: [0.8, 1, 0.8, 1, 0.8], // Erratically change scale
+			rotate: [0, 10, -10, 10, 0], // Add rotation for dynamic effect
 			transition: {
-				duration: 0.2,
+				duration: 2, // Speed up the transition for an erratic effect
 				repeat: Infinity,
-				repeatType: "reverse",
-				ease: "easeInOut",
+				ease: "linear", // Use a linear easing for a more erratic feel
 			},
 		},
 		THINKING: {
-			x: [-10, 0, 10],
-			scale: 0.98,
-			boxShadow: [
-				"0 0 8px rgba(255,255,255,0.5)",
-				"0 0 12px rgba(255,255,255,0.8)",
-				"0 0 8px rgba(255,255,255,0.5)",
-			],
+			scale: [0.7, 0.7, 0.7], // Slight scale to keep the movement
+			rotate: [0, 720], // Continuous rotation
+			borderRadius: ["50%", "20%", "20%", "50%"], // Change borderRadius for rounded square edges
 			transition: {
-				duration: 4,
+				duration: 5,
 				repeat: Infinity,
-				repeatType: "reverse",
 				ease: "easeInOut",
 			},
 		},

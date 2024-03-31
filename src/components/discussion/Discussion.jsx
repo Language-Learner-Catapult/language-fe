@@ -6,34 +6,51 @@ import { doc, getFirestore, setDoc } from "firebase/firestore";
 import Cookies from "js-cookie";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import MicOffIcon from "@mui/icons-material/MicOff";
+import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 
 const Discussion = (props) => {
 	const db = getFirestore(app);
 	const mediaRecorderRef = useRef(null);
+	const effectRan = useRef(false);
+	const [isRecording, setIsRecording] = useState(false); // Added state to track recording status
 
 	useEffect(() => {
-		if (!Cookies.get("thread_id")) {
-			axios
-				.post("http://localhost:5000/create_thread", {
-					name: props.agentName,
-					language: props.language,
-				})
-				.then((response) => {
-					Cookies.set("thread_id", response.data.thread_id, { expires: 1 });
-					props.setAnimationState("EXCITED");
-					const sound = new UIFx(
-						"data:audio/webm;base64," + response.data.audio,
-						{
-							volume: 1.0,
-						}
-					);
-					sound.play();
-					setTimeout(() => {
-						props.setAnimationState("IDLE");
-					}, 3000);
-				});
+		console.log(props);
+		if (!effectRan.current) {
+			if (!Cookies.get("thread_id")) {
+				axios
+					.post("http://localhost:5000/create_thread", {
+						name: props.agentName,
+						language: props.language,
+					})
+					.then((response) => {
+						Cookies.set("thread_id", response.data.thread_id, { expires: 1 });
+						props.setAnimationState("EXCITED");
+						const sound = new UIFx(
+							"data:audio/webm;base64," + response.data.audio,
+							{
+								volume: 1.0,
+							}
+						);
+						sound.play();
+						setTimeout(() => {
+							props.setAnimationState("IDLE");
+						}, 20000);
+					});
+			}
 		}
+
+		return () => (effectRan.current = true);
 	}, []);
+
+	const toggleRecording = async () => {
+		if (isRecording) {
+			stopRecording();
+		} else {
+			await startRecording();
+		}
+	};
 
 	const startRecording = async () => {
 		props.setAnimationState("THINKING");
@@ -52,15 +69,19 @@ const Discussion = (props) => {
 				handleDataAvailable
 			);
 			mediaRecorderRef.current.start();
+			setIsRecording(true); // Update recording status
 		} catch (err) {
 			props.setAnimationState("IDLE");
 			console.error("Error accessing microphone:", err);
+			props.setAnimationState("IDLE"); // Stop talking if there is an error
+
 		}
 	};
 
 	const stopRecording = () => {
 		if (mediaRecorderRef.current) {
 			mediaRecorderRef.current.stop();
+			setIsRecording(false); // Update recording status
 			props.setAnimationState("THINKING");
 		}
 	};
@@ -106,24 +127,18 @@ const Discussion = (props) => {
 					}, 4000);
 				});
 
-			let uuid = uuidv4();
-			await setDoc(
-				doc(
-					db,
-					"audioRecords",
-					Cookies.get("user_id"),
-					Cookies.get("user_id"),
-					uuid
-				),
-				base64data
-			);
+			// await setDoc(
+			// 	doc(db, "audioRecords", Cookies.get("user_id"), Cookies.get("user_id")),
+			// 	base64data
+			// );
 		};
 	};
 
 	return (
 		<>
-			<button onClick={startRecording}>Start Recording</button>
-			<button onClick={stopRecording}>Stop Recording</button>
+			<button onClick={toggleRecording}>
+				{isRecording ? <MicOffIcon /> : <KeyboardVoiceIcon />}
+			</button>
 		</>
 	);
 };
