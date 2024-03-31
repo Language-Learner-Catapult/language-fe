@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebaseconfig';
 import Cookies from 'js-cookie';
-import languagesData from '../main/data/languages.json'; // Adjust the path as necessary
+import languagesData from '../main/data/languages.json';
+import app from '../../App'
 import {
     TextField,
     Button,
@@ -28,6 +30,7 @@ const UserProfileForm = ({ onSave }) => {
         additionalInfo: ''
     });
     const [activeStep, setActiveStep] = useState(0);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -35,8 +38,8 @@ const UserProfileForm = ({ onSave }) => {
     };
 
     const handleNext = () => {
-        if (activeStep < Object.keys(formData).length - 1) {
-            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        if (activeStep < formFields.length - 1) {
+            setActiveStep(prevActiveStep => prevActiveStep + 1);
         }
     };
 
@@ -48,7 +51,9 @@ const UserProfileForm = ({ onSave }) => {
 
         try {
             await setDoc(profileDocRef, formData);
-            onSave(formData);
+            onSave(formData);  // Assuming onSave updates the parent state or context
+
+            navigate('/learn');  // Navigate after successful profile update
         } catch (error) {
             console.error("Error saving profile:", error);
         }
@@ -59,69 +64,74 @@ const UserProfileForm = ({ onSave }) => {
         { label: 'Name', name: 'name', type: 'text' },
         { label: 'Age', name: 'age', type: 'number' },
         { label: 'Native Language', name: 'nativeLanguage', type: 'select', options: languagesData },
-        { label: 'Learning Languages', name: 'learningLanguages', type: 'select', options: languagesData, multiple: true },
-        { label: 'Additional Information', name: 'additionalInfo', type: 'textarea' }
+        { label: 'Languages You Want to Learn', name: 'learningLanguages', type: 'select', options: languagesData, multiple: true },
+        { label: 'Additional Information About You', name: 'additionalInfo', type: 'textarea' }
     ];
 
     const currentField = formFields[activeStep];
 
     return (
-        <Container component="main" maxWidth="sm" sx={{ display: 'flex', height: '100vh' }}>
-            <Paper elevation={3} sx={{ margin: 'auto', p: 4, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <Container component="main" maxWidth="sm" sx={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>
+            <Paper elevation={3} sx={{ p: 4, width: '100%', maxWidth: '500px' }}>
+                <Typography variant="h5" sx={{ mb: 3, fontWeight: 'bold', color: 'primary.main' }}>
+                    {`Step ${activeStep + 1} of ${formFields.length}: ${currentField.label}`}
+                </Typography>
                 <Slide direction="left" in={true} mountOnEnter unmountOnExit>
-                    <Box sx={{ marginBottom: 2 }}>
-                        {currentField.type === 'select' ? (
-                            <FormControl fullWidth variant="outlined">
-                                <InputLabel>{currentField.label}</InputLabel>
-                                <Select
-                                    multiple={currentField.multiple}
+                    <Box>
+                        <FormControl fullWidth variant="outlined" sx={{ mb: 2 }}>
+                            {currentField.type === 'select' ? (
+                                <>
+                                    <InputLabel>{currentField.label}</InputLabel>
+                                    <Select
+                                        multiple={currentField.multiple}
+                                        name={currentField.name}
+                                        value={formData[currentField.name]}
+                                        onChange={handleChange}
+                                        label={currentField.label}
+                                    >
+                                        {Object.keys(currentField.options).map(option => (
+                                            <MenuItem key={option} value={option}>
+                                                {option}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </>
+                            ) : currentField.type === 'textarea' ? (
+                                <TextField
+                                    label={currentField.label}
                                     name={currentField.name}
                                     value={formData[currentField.name]}
                                     onChange={handleChange}
+                                    variant="outlined"
+                                    fullWidth
+                                    multiline
+                                    rows={4}
+                                />
+                            ) : (
+                                <TextField
                                     label={currentField.label}
-                                >
-                                    {Object.keys(currentField.options).map((option) => (
-                                        <MenuItem key={option} value={option}>
-                                            {option}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                        ) : currentField.type === 'textarea' ? (
-                            <TextField
-                                label={currentField.label}
-                                name={currentField.name}
-                                value={formData[currentField.name]}
-                                onChange={handleChange}
-                                variant="outlined"
-                                fullWidth
-                                multiline
-                                rows={4}
-                            />
-                        ) : (
-                            <TextField
-                                label={currentField.label}
-                                name={currentField.name}
-                                type={currentField.type}
-                                value={formData[currentField.name]}
-                                onChange={handleChange}
-                                variant="outlined"
-                                fullWidth
-                            />
-                        )}
+                                    name={currentField.name}
+                                    type={currentField.type}
+                                    value={formData[currentField.name]}
+                                    onChange={handleChange}
+                                    variant="outlined"
+                                    fullWidth
+                                />
+                            )}
+                        </FormControl>
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                            {activeStep < formFields.length - 1 ? (
+                                <Button variant="contained" color="primary" onClick={handleNext}>
+                                    Next
+                                </Button>
+                            ) : (
+                                <Button variant="contained" color="primary" onClick={handleSubmit}>
+                                    Save Profile
+                                </Button>
+                            )}
+                        </Box>
                     </Box>
                 </Slide>
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    {activeStep < formFields.length - 1 ? (
-                        <Button variant="contained" onClick={handleNext}>
-                            Next
-                        </Button>
-                    ) : (
-                        <Button variant="contained" onClick={handleSubmit}>
-                            Save Profile
-                        </Button>
-                    )}
-                </Box>
             </Paper>
         </Container>
     );
