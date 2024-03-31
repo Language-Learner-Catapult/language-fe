@@ -6,11 +6,14 @@ import { doc, getFirestore, setDoc } from "firebase/firestore";
 import Cookies from "js-cookie";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import MicOffIcon from '@mui/icons-material/MicOff';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 const Discussion = (props) => {
 	const db = getFirestore(app);
 	const mediaRecorderRef = useRef(null);
 	const [base64Audio, setAudio] = useState("");
+	const [isRecording, setIsRecording] = useState(false); // Added state to track recording status
 
 	useEffect(() => {
 		if (!Cookies.get("thread_id")) {
@@ -19,6 +22,14 @@ const Discussion = (props) => {
 			});
 		}
 	}, []);
+
+	const toggleRecording = async () => {
+		if (isRecording) {
+			stopRecording();
+		} else {
+			await startRecording();
+		}
+	};
 
 	const startRecording = async () => {
 		props.setTalking(true);
@@ -37,6 +48,7 @@ const Discussion = (props) => {
 				handleDataAvailable
 			);
 			mediaRecorderRef.current.start();
+			setIsRecording(true); // Update recording status
 		} catch (err) {
 			console.error("Error accessing microphone:", err);
 			props.setTalking(false); // Stop talking if there is an error
@@ -47,6 +59,7 @@ const Discussion = (props) => {
 		if (mediaRecorderRef.current) {
 			mediaRecorderRef.current.stop();
 			props.setTalking(false);
+			setIsRecording(false); // Update recording status
 		}
 	};
 
@@ -66,31 +79,12 @@ const Discussion = (props) => {
 		reader.onloadend = async () => {
 			const base64data = { audio: reader.result };
 
-			//axios
-			//	.post(
-				//	"http://localhost:5000/messages/" +
-				//		Cookies.get("thread_id") +
-					//	"/send",
-				//	base64data
-			//	)
-			//	.then(async (response) => {
-			//		const sound = new UIFx(
-			//			"data:audio/webm;base64," + response.data.audio,
-			//			{
-			//				volume: 0.8,
-			//			}
-			//		);
-			//		sound.play();
-			//	});
-
-			//let uuid = uuidv4();
 			await setDoc(
 				doc(
 					db,
 					"audioRecords",
 					Cookies.get("user_id"),
 					Cookies.get("user_id"),
-
 				),
 				base64data
 			);
@@ -99,8 +93,9 @@ const Discussion = (props) => {
 
 	return (
 		<>
-			<button onClick={startRecording}>Start Recording</button>
-			<button onClick={stopRecording}>Stop Recording</button>
+			<button onClick={toggleRecording}>
+				{isRecording ? <MicOffIcon/>: <KeyboardVoiceIcon/>}
+			</button>
 		</>
 	);
 };
