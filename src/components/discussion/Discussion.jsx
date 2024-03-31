@@ -19,6 +19,16 @@ const Discussion = (props) => {
 
 	useEffect(() => {
 		console.log(props);
+		navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+			var speech = hark(stream); // init hark stream
+			speech.on("stopped_speaking", function () {
+				// Start a timeout when stopped speaking is detected
+				if (isRecording) {
+					stopRecording();
+				}
+			});
+		});
+
 		if (!effectRan.current) {
 			if (!Cookies.get("thread_id")) {
 				axios
@@ -57,24 +67,7 @@ const Discussion = (props) => {
 	const startRecording = async () => {
 		props.setAnimationState("THINKING");
 		try {
-			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-			const options = {
-				threshold: -70, // Volume threshold in dB
-			};
-			var speech = hark(stream, options); // init hark stream
-			let stopTimeout;
-			speech.on("stopped_speaking", function () {
-				// Start a timeout when stopped speaking is detected
-				stopTimeout = setTimeout(() => {
-					stopRecording();
-					console.log("stopped_speaking");
-				}, 2000); // Wait for 1 second before actually stopping the recording
-			});
-
-			speech.on("speaking", function () {
-				console.log("started_speaking");
-				clearTimeout(stopTimeout);
-			});
+			var stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
 			let mimeType = "audio/wav";
 			if (!MediaRecorder.isTypeSupported(mimeType)) {
@@ -101,6 +94,7 @@ const Discussion = (props) => {
 		if (mediaRecorderRef.current) {
 			mediaRecorderRef.current.stop();
 			setIsRecording(false); // Update recording status
+			console.log("stopped_speaking");
 		}
 	};
 

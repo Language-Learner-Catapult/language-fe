@@ -84,6 +84,7 @@ const ProfileCard = (props) => {
 				// For example, onClick={() => setAnimationState('EXCITED')}
 			/>
 			<Discussion
+				reset={props.reset}
 				updateFluency={props.updateFluency}
 				agentName={profileData.name}
 				language={currentLanguage}

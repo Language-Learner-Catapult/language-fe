@@ -146,15 +146,15 @@ const LandingPage = ({ setAuthenticated }) => {
 							}}
 						>
 							{/* Placeholder for phone mockup */}
-                            <img
-                                src={process.env.PUBLIC_URL + "/lingua_mockup.png"}
-                                alt="lingua logo"
-                                style={{
+							<img
+								src={process.env.PUBLIC_URL + "/lingua_mockup.png"}
+								alt="lingua logo"
+								style={{
 									width: "400px",
 									backgroundColor: "lightgray",
 									borderRadius: "16px",
 								}}
-						    />
+							/>
 						</Box>
 					</Grid>
 				</Grid>
