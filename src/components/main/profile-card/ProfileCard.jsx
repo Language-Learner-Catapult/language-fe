@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { LanguageContext } from "../language-context/LanguageContext";
 import languagesData from "../data/languages.json";
@@ -14,35 +14,34 @@ const ProfileCard = () => {
 
 	const animationStates = {
 		IDLE: {
-			scale: [1, 1.4, 1, 1.4, 1], // Erratically change scale
+			scale: [0.7, 1.0, 0.7, 1.0, 0.7], // Erratically change scale
 			rotate: [0, 10, -10, 10, 0], // Add rotation for dynamic effect
 			transition: {
-				duration: 0.8, // Speed up the transition for an erratic effect
+				duration: 8, // Speed up the transition for an erratic effect
 				repeat: Infinity,
 				ease: "linear", // Use a linear easing for a more erratic feel
 			},
 		},
 		EXCITED: {
-			scale: [1, 1.4, 1, 1.4, 1], // Erratically change scale
+			scale: [0.8, 1, 0.8, 1, 0.8], // Erratically change scale
 			rotate: [0, 10, -10, 10, 0], // Add rotation for dynamic effect
 			transition: {
-				duration: 0.1, // Speed up the transition for an erratic effect
+				duration: 2, // Speed up the transition for an erratic effect
 				repeat: Infinity,
 				ease: "linear", // Use a linear easing for a more erratic feel
 			},
 		},
 		THINKING: {
-			scale: [0.7, .7, .7], // Slight scale to keep the movement
+			scale: [0.7, 0.7, 0.7], // Slight scale to keep the movement
 			rotate: [0, 720], // Continuous rotation
 			borderRadius: ["50%", "20%", "20%", "50%"], // Change borderRadius for rounded square edges
 			transition: {
-				duration: .5,
+				duration: 5,
 				repeat: Infinity,
 				ease: "easeInOut",
 			},
 		},
 	};
-
 
 	// We will need a piece of state to hold and change the animation state
 	const [animationState, setAnimationState] = React.useState("IDLE");
@@ -82,7 +81,11 @@ const ProfileCard = () => {
 				// onClick or other event handlers can be used to change the state
 				// For example, onClick={() => setAnimationState('EXCITED')}
 			/>
-			<Discussion setTalking={setTalking} />
+			<Discussion
+				agentName={profileData.name}
+				language={currentLanguage}
+				setAnimationState={setAnimationState}
+			/>
 			<Typography variant="subtitle1">Learning {currentLanguage}</Typography>
 		</Box>
 	);
