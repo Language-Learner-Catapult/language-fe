@@ -22,8 +22,9 @@ import theme from "./theme";
 import UserProfileButton from "./user-profile-button/UserProfileButton";
 
 function Main() {
-	const [currentLanguage, setCurrentLanguage] = useState("Hindi");
+	const [currentLanguage, setCurrentLanguage] = useState("Russian");
 	const [profile, setProfile] = useState("");
+	const [fluency, updateFluency] = useState("20/100");
 
 	useEffect(() => {
 		const fetchProfile = async () => {
@@ -86,11 +87,39 @@ function Main() {
 								{/*  <SessionDetails />*/}
 							</Grid>
 							<Grid item xs={12} md={4}>
-								<ProfileCard />
+								<ProfileCard updateFluency={updateFluency} />
+								<Typography
+									variant="subtitle1"
+									sx={{
+										flexGrow: 1,
+										color: "white",
+										fontWeight: "bold",
+										textAlign: "center",
+										position: "absolute",
+										top: "75%",
+										left: "50%",
+										transform: "translate(-50%, -50%)",
+									}}
+								>
+									Learning {currentLanguage}
+								</Typography>
+								<Typography
+									variant="subtitle1"
+									sx={{
+										flexGrow: 1,
+										color: "white",
+										fontWeight: "bold",
+										textAlign: "center",
+										position: "absolute",
+										top: "79%",
+										left: "50%",
+										transform: "translate(-50%, -50%)",
+									}}
+								>
+									Fluency Score {fluency}
+								</Typography>
 							</Grid>
-							<Grid item xs={12} md={4}>
-								{/*<LearningProgress />*/}
-							</Grid>
+							<Grid item xs={12} md={4}></Grid>
 						</Grid>
 					</Container>
 					<Footer />
