@@ -15,7 +15,7 @@ const Discussion = (props) => {
 	const mediaRecorderRef = useRef(null);
 	const effectRan = useRef(false);
 	const [isRecording, setIsRecording] = useState(false); // Added state to track recording status
-	const [fluencyScore, setFluencyScore] = useState("20/100 (Beginner)");
+	const [fluencyScore, setFluencyScore] = useState(20);
 
 	useEffect(() => {
 		console.log(props);
@@ -125,6 +125,7 @@ const Discussion = (props) => {
 				audio: reader.result,
 				name: props.agentName,
 				language: props.language,
+				proficiency: fluencyScore,
 			};
 
 			axios
