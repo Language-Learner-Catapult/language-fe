@@ -46,6 +46,7 @@ const LandingPage = ({ setAuthenticated }) => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
+        Cookies.set('username', user.displayName, { expires: 1 });
         Cookies.set('user_id', user.uid, { expires: 1 });
         setAuthenticated(true);
         navigate('/learn');
