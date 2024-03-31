@@ -6,8 +6,9 @@ import { doc, getFirestore, setDoc } from "firebase/firestore";
 import Cookies from "js-cookie";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-import MicOutlinedIcon from "@mui/icons-material/MicOutlined";
-import MicOffOutlinedIcon from "@mui/icons-material/MicOffOutlined";
+import MicOutlinedIcon from '@mui/icons-material/MicOutlined';
+import MicOffOutlinedIcon from '@mui/icons-material/MicOffOutlined';
+import hark from 'hark'
 
 const Discussion = (props) => {
 	const db = getFirestore(app);
@@ -57,6 +58,15 @@ const Discussion = (props) => {
 		props.setAnimationState("THINKING");
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+			var speech = hark(stream); // init hark stream
+			speech.on('stopped_speaking', function() {
+				stopRecording();
+				console.log("stopped")
+			});
+
+
+
 			let mimeType = "audio/wav";
 			if (!MediaRecorder.isTypeSupported(mimeType)) {
 				mimeType = "audio/webm"; // Fallback to webm if wav is not supported
