@@ -43,6 +43,13 @@ const ProfileCard = () => {
 		},
 	};
 
+	// Define background styles for different states
+	const backgroundStyles = {
+		IDLE: "linear-gradient(to right, #0072ff, #00c6ff)", // Blue gradient
+		EXCITED: "linear-gradient(to right, #ff7e5f, #feb47b)", // Orange gradient
+		THINKING: "linear-gradient(to right, #6a11cb, #2575fc)", // Purple gradient
+	};
+
 	// We will need a piece of state to hold and change the animation state
 	const [animationState, setAnimationState] = React.useState("IDLE");
 
@@ -63,7 +70,7 @@ const ProfileCard = () => {
 			<Typography variant="h5" component="h2" gutterBottom>
 				{profileData.name}
 			</Typography>
-			{/* Enhanced Circular Breathing Animation for Pixar-like liveliness */}
+
 			<motion.div
 				style={{
 					display: "flex",
@@ -72,7 +79,7 @@ const ProfileCard = () => {
 					height: 180,
 					width: 180,
 					borderRadius: "50%",
-					background: "linear-gradient(#FDC830, #F37335)",
+					background: backgroundStyles[animationState], // Set background based on animationState
 					boxShadow: "0 0 8px rgba(255,255,255,0.5)",
 				}}
 				variants={animationStates}
