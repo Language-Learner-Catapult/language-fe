@@ -50,7 +50,7 @@ const ProfileCard = (props) => {
 	};
 
 	// We will need a piece of state to hold and change the animation state
-	const [animationState, setAnimationState] = React.useState("IDLE");
+	const [animationState, setAnimationState] = React.useState("THINKING");
 
 	return (
 		<Box
@@ -84,6 +84,7 @@ const ProfileCard = (props) => {
 				// For example, onClick={() => setAnimationState('EXCITED')}
 			/>
 			<Discussion
+				setPace={props.setPace}
 				reset={props.reset}
 				updateFluency={props.updateFluency}
 				agentName={profileData.name}

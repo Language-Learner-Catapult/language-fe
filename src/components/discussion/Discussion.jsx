@@ -128,6 +128,7 @@ const Discussion = (props) => {
 				)
 				.then((response) => {
 					props.setAnimationState("EXCITED");
+					props.setPace(Math.round(response.data.pace));
 					props.updateFluency(response.data.fluency);
 					const sound = new UIFx(
 						"data:audio/webm;base64," + response.data.audio,

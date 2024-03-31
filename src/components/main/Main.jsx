@@ -24,6 +24,7 @@ function Main() {
 	const [currentLanguage, setCurrentLanguage] = useState("Spanish");
 	const [profile, setProfile] = useState("");
 	const [fluency, updateFluency] = useState(20);
+	const [pace, setPace] = useState("_");
 	const [state, reset] = useState(0);
 
 	useEffect(() => {
@@ -83,7 +84,11 @@ function Main() {
 								{/*  <SessionDetails />*/}
 							</Grid>
 							<Grid item xs={12} md={4}>
-								<ProfileCard reset={state} updateFluency={updateFluency} />
+								<ProfileCard
+									setPace={setPace}
+									reset={state}
+									updateFluency={updateFluency}
+								/>
 								<Typography
 									variant="h2"
 									component="h2"
@@ -127,6 +132,20 @@ function Main() {
 									}}
 								>
 									Fluency Score {fluency}/100
+								</Typography>
+								<Typography
+									variant="title1"
+									sx={{
+										flexGrow: 1,
+										color: "white",
+										textAlign: "center",
+										position: "absolute",
+										top: "83%",
+										left: "50%",
+										transform: "translate(-50%, -50%)",
+									}}
+								>
+									Pace: {pace} WPM
 								</Typography>
 								<Button
 									variant="contained"
