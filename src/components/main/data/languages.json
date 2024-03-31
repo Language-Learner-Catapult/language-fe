@@ -4,7 +4,11 @@
     "agentName": "Oliver",
     "image": "../../../../agent-profiles/Chen.webp"
   },
-
+  "Mandarin": {
+    "gradient": "linear-gradient(to right, #ffb74d, #ffa726)",
+    "agentName": "Chen",
+    "image": "../../../../agent-profiles/Chen.webp"
+  },
   "Hindi": {
     "gradient": "linear-gradient(to right, #ffcc80, #ffb74d)",
     "agentName": "Raj",
