@@ -1,9 +1,10 @@
 {
-  "Mandarin": {
+  "English": {
     "gradient": "linear-gradient(to right, #ffb74d, #ffa726)",
-    "agentName": "Chen",
+    "agentName": "Oliver",
     "image": "../../../../agent-profiles/Chen.webp"
   },
+
   "Hindi": {
     "gradient": "linear-gradient(to right, #ffcc80, #ffb74d)",
     "agentName": "Raj",
