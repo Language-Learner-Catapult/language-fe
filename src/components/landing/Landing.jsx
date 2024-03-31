@@ -78,11 +78,16 @@ const LandingPage = ({ setAuthenticated }) => {
 				sx={{ background: "transparent", boxShadow: "none" }}
 			>
 				<Toolbar>
-					<Box sx={{ display: "flex",
-						alignItems: "center",
-						background: "rgba(0, 0, 0, 1)",
-						borderRadius: "15px",
-						padding: "8px", marginTop: "14px"}}>
+					<Box
+						sx={{
+							display: "flex",
+							alignItems: "center",
+							background: "rgba(0, 0, 0, 1)",
+							borderRadius: "15px",
+							padding: "8px",
+							marginTop: "14px",
+						}}
+					>
 						<img
 							src={process.env.PUBLIC_URL + "/logo.png"}
 							alt="lingua logo"
@@ -111,9 +116,9 @@ const LandingPage = ({ setAuthenticated }) => {
 							<Typography
 								variant="h2"
 								component="h1"
-								sx={{fontWeight: 700, color: "white", mb: 2 }}
+								sx={{ fontWeight: 700, color: "white", mb: 2 }}
 							>
-								Master a language conversationally.
+								Master a language through casual conversation.
 							</Typography>
 							<Typography
 								variant="h5"
@@ -168,11 +173,11 @@ const LandingPage = ({ setAuthenticated }) => {
 												Learn by Speaking
 											</Typography>
 											<Typography variant="body1" color="text.secondary">
-												They say the best way to learn a language is living in the
-												country. We deliver the next best thing right to your
-												fingertips. Engage in interactive conversations with AI to
-												learn a new language, rather than completing mundane
-												quizzes.
+												They say the best way to learn a language is living in
+												the country. We deliver the next best thing right to
+												your fingertips. Engage in interactive conversations
+												with AI to learn a new language, rather than completing
+												mundane quizzes.
 											</Typography>
 										</CardContent>
 									</Grid>
@@ -192,10 +197,7 @@ const LandingPage = ({ setAuthenticated }) => {
 							</BenefitCard>
 						</Grid>
 						<Grid item xs={12}>
-							<BenefitCard
-								backgroundColor="#FFF0F5"
-								titleColor="black"
-							>
+							<BenefitCard backgroundColor="#FFF0F5" titleColor="black">
 								<Grid container spacing={2} direction="row-reverse">
 									<Grid item xs={12} md={8}>
 										<CardContent>
@@ -203,9 +205,9 @@ const LandingPage = ({ setAuthenticated }) => {
 												Detailed Insights
 											</Typography>
 											<Typography variant="body1" color="text.secondary">
-												Get comprehensive feedback on your tone and cadence to help
-												you sound like a native speaker. Other apps don't offer this
-												level of detail.
+												Get comprehensive feedback on your tone and cadence to
+												help you sound like a native speaker. Other apps don't
+												offer this level of detail.
 											</Typography>
 										</CardContent>
 									</Grid>
@@ -234,8 +236,8 @@ const LandingPage = ({ setAuthenticated }) => {
 											</Typography>
 											<Typography variant="body1" color="text.secondary">
 												Receive score reports after each session to monitor your
-												improvement. This gamified approach makes learning more fun
-												and engaging.
+												improvement. This gamified approach makes learning more
+												fun and engaging.
 											</Typography>
 										</CardContent>
 									</Grid>
@@ -255,7 +257,6 @@ const LandingPage = ({ setAuthenticated }) => {
 							</BenefitCard>
 						</Grid>
 					</Grid>
-
 				</Container>
 			</Box>
 		</Box>

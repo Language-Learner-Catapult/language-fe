@@ -63,20 +63,6 @@ function Main() {
 						}}
 					>
 						<Toolbar>
-							<Box sx={{ display: "flex",
-								alignItems: "center",
-								background: "rgba(0, 0, 0, 1)",
-								borderRadius: "15px",
-								padding: "8px"}}>
-								<img
-									src={process.env.PUBLIC_URL + "/logo.png"}
-									alt="lingua logo"
-									style={{ width: "40px", height: "40px", marginRight: "8px" }}
-								/>
-
-							</Box>
-
-							<Box sx={{ width: "2vw"}} />
 							<LanguageSelector sx={{ border: "none", boxShadow: "none" }} />
 							<Box sx={{ flexGrow: 1 }} />
 							<UserProfileButton profile={profile} userLevel={userLevel} />
