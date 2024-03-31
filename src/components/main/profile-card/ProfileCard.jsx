@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, {useContext, useState} from "react";
 import { Box, Typography } from "@mui/material";
 import { LanguageContext } from "../language-context/LanguageContext";
 import languagesData from "../data/languages.json";
 import Discussion from "../../discussion/Discussion.jsx";
 import { motion } from "framer-motion";
+
 
 const ProfileCard = () => {
 	const { currentLanguage } = useContext(LanguageContext);
