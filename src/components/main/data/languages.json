@@ -1,9 +1,4 @@
 {
-  "English": {
-    "gradient": "linear-gradient(to right, #9bc5c3, #5a9faa)",
-    "agentName": "Oliver",
-    "image": "../../../../agent-profiles/Oliver.webp"
-  },
   "Mandarin": {
     "gradient": "linear-gradient(to right, #ffb74d, #ffa726)",
     "agentName": "Chen",
