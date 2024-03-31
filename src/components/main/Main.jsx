@@ -22,7 +22,7 @@ import theme from "./theme";
 import UserProfileButton from "./user-profile-button/UserProfileButton";
 
 function Main() {
-	const [currentLanguage, setCurrentLanguage] = useState("Russian");
+	const [currentLanguage, setCurrentLanguage] = useState("Spanish");
 	const [profile, setProfile] = useState("");
 	const [fluency, updateFluency] = useState("20/100");
 
@@ -40,10 +40,6 @@ function Main() {
 		fetchProfile();
 	}, []);
 
-	const languageGradient = useMemo(() => {
-		return languagesData[currentLanguage].gradient;
-	}, [currentLanguage]);
-
 	let userLevel = "Beginner";
 	return (
 		<ThemeProvider theme={theme}>
@@ -54,7 +50,7 @@ function Main() {
 						minHeight: "100vh",
 						display: "flex",
 						flexDirection: "column",
-						background: languageGradient,
+						background: "linear-gradient(to right, #ff7057, #bdaa4f)",
 					}}
 				>
 					<AppBar
@@ -89,11 +85,26 @@ function Main() {
 							<Grid item xs={12} md={4}>
 								<ProfileCard updateFluency={updateFluency} />
 								<Typography
-									variant="subtitle1"
+									variant="h2"
+									component="h2"
 									sx={{
 										flexGrow: 1,
 										color: "white",
-										fontWeight: "bold",
+										textAlign: "center",
+										position: "absolute",
+										top: "25%",
+										left: "50%",
+										transform: "translate(-50%, -50%)",
+									}}
+								>
+									{languagesData[currentLanguage].agentName}
+								</Typography>
+
+								<Typography
+									variant="title1"
+									sx={{
+										flexGrow: 1,
+										color: "white",
 										textAlign: "center",
 										position: "absolute",
 										top: "75%",
@@ -104,11 +115,10 @@ function Main() {
 									Learning {currentLanguage}
 								</Typography>
 								<Typography
-									variant="subtitle1"
+									variant="title1"
 									sx={{
 										flexGrow: 1,
 										color: "white",
-										fontWeight: "bold",
 										textAlign: "center",
 										position: "absolute",
 										top: "79%",

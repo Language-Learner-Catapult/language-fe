@@ -78,12 +78,17 @@ const LandingPage = ({ setAuthenticated }) => {
 				sx={{ background: "transparent", boxShadow: "none" }}
 			>
 				<Toolbar>
-					<Box sx={{ display: "flex", alignItems: "center" }}>
+					<Box sx={{ display: "flex",
+						alignItems: "center",
+						background: "rgba(0, 0, 0, 1)",
+						borderRadius: "15px",
+						padding: "8px", marginTop: "14px"}}>
 						<img
 							src={process.env.PUBLIC_URL + "/logo.png"}
 							alt="lingua logo"
 							style={{ width: "40px", height: "40px", marginRight: "8px" }}
 						/>
+
 						<Typography
 							variant="h6"
 							component="div"
@@ -106,7 +111,7 @@ const LandingPage = ({ setAuthenticated }) => {
 							<Typography
 								variant="h2"
 								component="h1"
-								sx={{ fontWeight: 700, color: "white", mb: 2 }}
+								sx={{fontWeight: 700, color: "white", mb: 2 }}
 							>
 								Master a language conversationally.
 							</Typography>
@@ -156,83 +161,101 @@ const LandingPage = ({ setAuthenticated }) => {
 					<Grid container spacing={4}>
 						<Grid item xs={12}>
 							<BenefitCard backgroundColor="#F0F8FF" titleColor="black">
-								<CardContent>
-									<Typography variant="h5" component="div" sx={{ mb: 2 }}>
-										Learn by Speaking
-									</Typography>
-									<Typography variant="body1" color="text.secondary">
-										They say the best way to learn a language is living in the
-										country. We deliver the next best thing right to your
-										fingertips. Engage in interactive conversations with AI to
-										learn a new language, rather than completing mundane
-										quizzes.
-									</Typography>
-								</CardContent>
-								<Box
-									sx={{
-										width: "200px",
-										height: "200px",
-										backgroundColor: "lightgray",
-										borderRadius: "16px",
-										flexShrink: 0,
-										ml: 2,
-									}}
-								/>
+								<Grid container spacing={2}>
+									<Grid item xs={12} md={8}>
+										<CardContent>
+											<Typography variant="h5" component="div" sx={{ mb: 2 }}>
+												Learn by Speaking
+											</Typography>
+											<Typography variant="body1" color="text.secondary">
+												They say the best way to learn a language is living in the
+												country. We deliver the next best thing right to your
+												fingertips. Engage in interactive conversations with AI to
+												learn a new language, rather than completing mundane
+												quizzes.
+											</Typography>
+										</CardContent>
+									</Grid>
+									<Grid item xs={12} md={4}>
+										<Box
+											sx={{
+												width: "200px",
+												height: "200px",
+												backgroundColor: "lightgray",
+												borderRadius: "16px",
+												flexShrink: 0,
+												ml: 2,
+											}}
+										/>
+									</Grid>
+								</Grid>
 							</BenefitCard>
 						</Grid>
 						<Grid item xs={12}>
 							<BenefitCard
 								backgroundColor="#FFF0F5"
 								titleColor="black"
-								sx={{ flexDirection: "row-reverse" }}
 							>
-								<Box
-									sx={{
-										width: "200px",
-										height: "200px",
-										backgroundColor: "lightgray",
-										borderRadius: "16px",
-										flexShrink: 0,
-										mr: 2,
-									}}
-								/>
-								<CardContent>
-									<Typography variant="h5" component="div" sx={{ mb: 2 }}>
-										Detailed Insights
-									</Typography>
-									<Typography variant="body1" color="text.secondary">
-										Get comprehensive feedback on your tone and cadence to help
-										you sound like a native speaker. Other apps don't offer this
-										level of detail.
-									</Typography>
-								</CardContent>
+								<Grid container spacing={2} direction="row-reverse">
+									<Grid item xs={12} md={8}>
+										<CardContent>
+											<Typography variant="h5" component="div" sx={{ mb: 2 }}>
+												Detailed Insights
+											</Typography>
+											<Typography variant="body1" color="text.secondary">
+												Get comprehensive feedback on your tone and cadence to help
+												you sound like a native speaker. Other apps don't offer this
+												level of detail.
+											</Typography>
+										</CardContent>
+									</Grid>
+									<Grid item xs={12} md={4}>
+										<Box
+											sx={{
+												width: "200px",
+												height: "200px",
+												backgroundColor: "lightgray",
+												borderRadius: "16px",
+												flexShrink: 0,
+												mr: 2,
+											}}
+										/>
+									</Grid>
+								</Grid>
 							</BenefitCard>
 						</Grid>
 						<Grid item xs={12}>
 							<BenefitCard backgroundColor="#F0FFF0" titleColor="black">
-								<CardContent>
-									<Typography variant="h5" component="div" sx={{ mb: 2 }}>
-										Track Your Progress
-									</Typography>
-									<Typography variant="body1" color="text.secondary">
-										Receive score reports after each session to monitor your
-										improvement. This gamified approach makes learning more fun
-										and engaging.
-									</Typography>
-								</CardContent>
-								<Box
-									sx={{
-										width: "200px",
-										height: "200px",
-										backgroundColor: "lightgray",
-										borderRadius: "16px",
-										flexShrink: 0,
-										ml: 2,
-									}}
-								/>
+								<Grid container spacing={2}>
+									<Grid item xs={12} md={8}>
+										<CardContent>
+											<Typography variant="h5" component="div" sx={{ mb: 2 }}>
+												Track Your Progress
+											</Typography>
+											<Typography variant="body1" color="text.secondary">
+												Receive score reports after each session to monitor your
+												improvement. This gamified approach makes learning more fun
+												and engaging.
+											</Typography>
+										</CardContent>
+									</Grid>
+									<Grid item xs={12} md={4}>
+										<Box
+											sx={{
+												width: "200px",
+												height: "200px",
+												backgroundColor: "lightgray",
+												borderRadius: "16px",
+												flexShrink: 0,
+												ml: 2,
+											}}
+										/>
+									</Grid>
+								</Grid>
 							</BenefitCard>
 						</Grid>
 					</Grid>
+
 				</Container>
 			</Box>
 		</Box>

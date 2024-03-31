@@ -59,17 +59,13 @@ const ProfileCard = (props) => {
 				flexDirection: "column",
 				alignItems: "center",
 				position: "absolute",
-				top: "35%",
+				top: "40%",
 				left: "50%",
 				transform: "translate(-50%, -50%)",
 				textAlign: "center",
 				color: "white",
 			}}
 		>
-			<Typography variant="h5" component="h2" gutterBottom>
-				{profileData.name}
-			</Typography>
-
 			<motion.div
 				style={{
 					display: "flex",

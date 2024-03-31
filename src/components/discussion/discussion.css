@@ -16,9 +16,11 @@ button {
     position: relative; /* This makes `z-index` applicable */
     z-index: 1000; /* A high value to ensure frontmost position */
 }
-
+.svg_icons {
+    transform: scale(2.5);
+}
 
 
 button:active {
-    background: #141E30
+    border-style: none;
 }
