@@ -16,16 +16,27 @@ import LearningProgress from "./learning-progress/LearningProgress"; // New comp
 import Footer from "./footer/Footer";
 import { LanguageContext } from "./language-context/LanguageContext";
 import languagesData from "./data/languages.json";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { db } from "../../firebaseconfig"; // Import the Firestore database configuration
 import theme from "./theme";
 import UserProfileButton from "./user-profile-button/UserProfileButton";
 
 function Main() {
 	const [currentLanguage, setCurrentLanguage] = useState("Hindi");
-	const [userName, setUserName] = useState("");
+	const [profile, setProfile] = useState("");
 
 	useEffect(() => {
-		const userId = Cookies.get("user_id");
-		setUserName(userId); // Fetch and set user name
+		const fetchProfile = async () => {
+			const docRef = doc(db, "profiles", Cookies.get("user_id"));
+			const docSnap = await getDoc(docRef);
+
+			if (docSnap.exists()) {
+				setProfile(docSnap.data());
+				console.log(docSnap.data());
+			}
+		};
+
+		fetchProfile();
 	}, []);
 
 	const languageGradient = useMemo(() => {
@@ -57,7 +68,7 @@ function Main() {
 						<Toolbar>
 							<LanguageSelector sx={{ border: "none", boxShadow: "none" }} />
 							<Box sx={{ flexGrow: 1 }} />
-							<UserProfileButton />
+							<UserProfileButton profile={profile} userLevel={userLevel} />
 						</Toolbar>
 					</AppBar>
 
