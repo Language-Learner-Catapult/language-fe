@@ -4,7 +4,6 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebaseconfig';
 import Cookies from 'js-cookie';
 import languagesData from '../main/data/languages.json';
-import app from '../../App'
 import {
     TextField,
     Button,
@@ -15,7 +14,6 @@ import {
     InputLabel,
     Select,
     MenuItem,
-    OutlinedInput,
     Typography,
     Slide
 } from '@mui/material';
@@ -37,23 +35,43 @@ const UserProfileForm = ({ onSave }) => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
+    const validateField = (fieldName, value) => {
+        // Example validation: non-empty for text and select, valid number for age
+        if (fieldName === 'age') {
+            return value && !isNaN(value) && parseInt(value, 10) > 0;
+        }
+        if (fieldName === 'learningLanguages') {
+            return true; // No validation for multiple select, always true
+        }
+        return value.trim() !== '';
+    };
+
     const handleNext = () => {
-        if (activeStep < formFields.length - 1) {
-            setActiveStep(prevActiveStep => prevActiveStep + 1);
+        const currentFieldName = formFields[activeStep].name;
+        if (validateField(currentFieldName, formData[currentFieldName])) {
+            if (activeStep < formFields.length - 1) {
+                setActiveStep(prevActiveStep => prevActiveStep + 1);
+            }
+        } else {
+            alert('Please fill in the field correctly.');
         }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const currentFieldName = formFields[activeStep].name;
+        if (!validateField(currentFieldName, formData[currentFieldName])) {
+            alert('Please fill in the field correctly.');
+            return;
+        }
 
         const userId = Cookies.get("user_id");
         const profileDocRef = doc(db, 'profiles', userId);
 
         try {
             await setDoc(profileDocRef, formData);
-            onSave(formData);  // Assuming onSave updates the parent state or context
-
-            navigate('/learn');  // Navigate after successful profile update
+            onSave(formData);
+            navigate('/learn');
         } catch (error) {
             console.error("Error saving profile:", error);
         }
@@ -121,11 +139,11 @@ const UserProfileForm = ({ onSave }) => {
                         </FormControl>
                         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                             {activeStep < formFields.length - 1 ? (
-                                <Button variant="contained" color="primary" onClick={handleNext}>
+                                <Button variant="contained" color="primary" onClick={handleNext} disabled={!validateField(currentField.name, formData[currentField.name])}>
                                     Next
                                 </Button>
                             ) : (
-                                <Button variant="contained" color="primary" onClick={handleSubmit}>
+                                <Button variant="contained" color="primary" onClick={handleSubmit} disabled={!validateField(currentField.name, formData[currentField.name])}>
                                     Save Profile
                                 </Button>
                             )}
