@@ -71,8 +71,10 @@ const Discussion = (props) => {
 			mediaRecorderRef.current.start();
 			setIsRecording(true); // Update recording status
 		} catch (err) {
+			props.setAnimationState("IDLE");
 			console.error("Error accessing microphone:", err);
 			props.setAnimationState("IDLE"); // Stop talking if there is an error
+
 		}
 	};
 
@@ -80,6 +82,7 @@ const Discussion = (props) => {
 		if (mediaRecorderRef.current) {
 			mediaRecorderRef.current.stop();
 			setIsRecording(false); // Update recording status
+			props.setAnimationState("THINKING");
 		}
 	};
 
@@ -110,12 +113,12 @@ const Discussion = (props) => {
 						"/send",
 					base64data
 				)
-				.then(async (response) => {
+				.then((response) => {
 					props.setAnimationState("EXCITED");
 					const sound = new UIFx(
 						"data:audio/webm;base64," + response.data.audio,
 						{
-							volume: 0.8,
+							volume: 1.0,
 						}
 					);
 					sound.play();

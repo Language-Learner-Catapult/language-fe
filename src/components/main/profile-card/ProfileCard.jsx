@@ -5,9 +5,9 @@ import languagesData from "../data/languages.json";
 import Discussion from "../../discussion/Discussion.jsx";
 import { motion } from "framer-motion";
 
+
 const ProfileCard = () => {
 	const { currentLanguage } = useContext(LanguageContext);
-	const [talking, setTalking] = useState(false);
 	const profileData = {
 		name: languagesData[currentLanguage].agentName,
 	};
