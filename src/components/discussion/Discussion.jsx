@@ -10,18 +10,33 @@ import axios from "axios";
 const Discussion = (props) => {
 	const db = getFirestore(app);
 	const mediaRecorderRef = useRef(null);
-	const [base64Audio, setAudio] = useState("");
 
 	useEffect(() => {
 		if (!Cookies.get("thread_id")) {
-			axios.get("http://localhost:5000/create_thread").then((response) => {
-				Cookies.set("thread_id", response.data, { expires: 1 });
-			});
+			axios
+				.post("http://localhost:5000/create_thread", {
+					name: props.agentName,
+					language: props.language,
+				})
+				.then((response) => {
+					Cookies.set("thread_id", response.data.thread_id, { expires: 1 });
+					props.setAnimationState("EXCITED");
+					const sound = new UIFx(
+						"data:audio/webm;base64," + response.data.audio,
+						{
+							volume: 1.0,
+						}
+					);
+					sound.play();
+					setTimeout(() => {
+						props.setAnimationState("IDLE");
+					}, 3000);
+				});
 		}
 	}, []);
 
 	const startRecording = async () => {
-		props.setTalking(true);
+		props.setAnimationState("THINKING");
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 			let mimeType = "audio/wav";
@@ -38,15 +53,15 @@ const Discussion = (props) => {
 			);
 			mediaRecorderRef.current.start();
 		} catch (err) {
+			props.setAnimationState("IDLE");
 			console.error("Error accessing microphone:", err);
-			props.setTalking(false); // Stop talking if there is an error
 		}
 	};
 
 	const stopRecording = () => {
 		if (mediaRecorderRef.current) {
 			mediaRecorderRef.current.stop();
-			props.setTalking(false);
+			props.setAnimationState("THINKING");
 		}
 	};
 
@@ -64,24 +79,32 @@ const Discussion = (props) => {
 		reader.readAsDataURL(audioBlob); // Convert audioBlob to Base64 Data URL
 
 		reader.onloadend = async () => {
-			const base64data = { audio: reader.result };
+			const base64data = {
+				audio: reader.result,
+				name: props.agentName,
+				language: props.language,
+			};
 
-			// axios
-				//.post(
-					//"http://localhost:5000/messages/" +
-						//Cookies.get("thread_id") +
-						//"/send",
-					//base64data
-				//)
-				//.then(async (response) => {
-				//	const sound = new UIFx(
-				//		"data:audio/webm;base64," + response.data.audio,
-				//		{
-				//			volume: 0.8,
-				//		}
-				//	);
-					// sound.play();
-				// });
+			axios
+				.post(
+					"http://localhost:5000/messages/" +
+						Cookies.get("thread_id") +
+						"/send",
+					base64data
+				)
+				.then((response) => {
+					props.setAnimationState("EXCITED");
+					const sound = new UIFx(
+						"data:audio/webm;base64," + response.data.audio,
+						{
+							volume: 1.0,
+						}
+					);
+					sound.play();
+					setTimeout(() => {
+						props.setAnimationState("IDLE");
+					}, 4000);
+				});
 
 			let uuid = uuidv4();
 			await setDoc(

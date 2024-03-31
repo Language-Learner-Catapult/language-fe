@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { LanguageContext } from "../language-context/LanguageContext";
 import languagesData from "../data/languages.json";
@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 
 const ProfileCard = () => {
 	const { currentLanguage } = useContext(LanguageContext);
-	const [talking, setTalking] = useState(false);
 	const profileData = {
 		name: languagesData[currentLanguage].agentName,
 	};
@@ -88,7 +87,11 @@ const ProfileCard = () => {
 				// onClick or other event handlers can be used to change the state
 				// For example, onClick={() => setAnimationState('EXCITED')}
 			/>
-			<Discussion setTalking={setTalking} />
+			<Discussion
+				agentName={profileData.name}
+				language={currentLanguage}
+				setAnimationState={setAnimationState}
+			/>
 			<Typography variant="subtitle1">Learning {currentLanguage}</Typography>
 		</Box>
 	);
