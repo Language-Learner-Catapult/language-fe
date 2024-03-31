@@ -22,7 +22,7 @@ import theme from "./theme";
 import UserProfileButton from "./user-profile-button/UserProfileButton";
 
 function Main() {
-	const [currentLanguage, setCurrentLanguage] = useState("Hindi");
+	const [currentLanguage, setCurrentLanguage] = useState("Spanish");
 	const [profile, setProfile] = useState("");
 
 	useEffect(() => {
@@ -63,33 +63,23 @@ function Main() {
 						}}
 					>
 						<Toolbar>
-							<Box sx={{ width:"15vw"}}>
-							<LanguageSelector sx={{ border: "none", boxShadow: "none" }} />
-						</Box>
-							<Box sx={{ flexGrow: 1 }} />
 							<Box sx={{ display: "flex",
 								alignItems: "center",
 								background: "rgba(0, 0, 0, 1)",
 								borderRadius: "15px",
-								padding: "8px", marginTop: "14px"}}>
+								padding: "8px"}}>
 								<img
 									src={process.env.PUBLIC_URL + "/logo.png"}
 									alt="lingua logo"
 									style={{ width: "40px", height: "40px", marginRight: "8px" }}
 								/>
 
-								<Typography
-									variant="h6"
-									component="div"
-									sx={{ flexGrow: 1, color: "white", fontWeight: "bold" }}
-								>
-									Lingua
-								</Typography>
 							</Box>
+
+							<Box sx={{ width: "2vw"}} />
+							<LanguageSelector sx={{ border: "none", boxShadow: "none" }} />
 							<Box sx={{ flexGrow: 1 }} />
-							<Box sx={{width:"15vw"}}>
 							<UserProfileButton profile={profile} userLevel={userLevel} />
-								</Box>
 						</Toolbar>
 					</AppBar>
 
