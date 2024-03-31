@@ -6,8 +6,8 @@ import { doc, getFirestore, setDoc } from "firebase/firestore";
 import Cookies from "js-cookie";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-import MicOffIcon from "@mui/icons-material/MicOff";
-import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
+import MicOffOutlinedIcon from '@mui/icons-material/MicOffOutlined';
+import MicNoneOutlinedIcon from '@mui/icons-material/MicNoneOutlined';
 
 const Discussion = (props) => {
 	const db = getFirestore(app);
@@ -137,7 +137,7 @@ const Discussion = (props) => {
 	return (
 		<>
 			<button onClick={toggleRecording}>
-				{isRecording ? <MicOffIcon /> : <KeyboardVoiceIcon />}
+				{isRecording ? <MicOffOutlinedIcon fontSize={"large"} /> : <MicNoneOutlinedIcon fontSize={"large"} />}
 			</button>
 		</>
 	);

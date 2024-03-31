@@ -14,7 +14,7 @@ const ProfileCard = () => {
 
 	const animationStates = {
 		IDLE: {
-			scale: [0.7, 1.0, 0.7, 1.0, 0.7], // Erratically change scale
+			scale: [1.4, 2, 1.4, 2, 1.4], // Erratically change scale
 			rotate: [0, 10, -10, 10, 0], // Add rotation for dynamic effect
 			transition: {
 				duration: 8, // Speed up the transition for an erratic effect
@@ -23,7 +23,7 @@ const ProfileCard = () => {
 			},
 		},
 		EXCITED: {
-			scale: [0.8, 1, 0.8, 1, 0.8], // Erratically change scale
+			scale: [1.6, 2, 1.6, 2, 1.6], // Erratically change scale
 			rotate: [0, 10, -10, 10, 0], // Add rotation for dynamic effect
 			transition: {
 				duration: 2, // Speed up the transition for an erratic effect
@@ -32,7 +32,7 @@ const ProfileCard = () => {
 			},
 		},
 		THINKING: {
-			scale: [0.7, 0.7, 0.7], // Slight scale to keep the movement
+			scale: [1.4, 1.4, 1.4], // Slight scale to keep the movement
 			rotate: [0, 720], // Continuous rotation
 			borderRadius: ["50%", "20%", "20%", "50%"], // Change borderRadius for rounded square edges
 			transition: {
@@ -60,7 +60,7 @@ const ProfileCard = () => {
 				flexDirection: "column",
 				alignItems: "center",
 				position: "absolute",
-				top: "50%",
+				top: "35%",
 				left: "50%",
 				transform: "translate(-50%, -50%)",
 				textAlign: "center",
