@@ -78,7 +78,11 @@ const LandingPage = ({ setAuthenticated }) => {
 				sx={{ background: "transparent", boxShadow: "none" }}
 			>
 				<Toolbar>
-					<Box sx={{ display: "flex", alignItems: "center" }}>
+					<Box sx={{ display: "flex",
+						alignItems: "center",
+						background: "rgba(0, 0, 0, 1)",
+						borderRadius: "15px",
+						padding: "8px", marginTop: "14px" }}>
 						<img
 							src={process.env.PUBLIC_URL + "/logo.png"}
 							alt="lingua logo"
