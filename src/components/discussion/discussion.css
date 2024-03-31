@@ -22,5 +22,5 @@ button {
 
 
 button:active {
-    background: #141E30
+    border-style: none;
 }
