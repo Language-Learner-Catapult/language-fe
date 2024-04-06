@@ -32,7 +32,7 @@ const Discussion = (props) => {
 		if (!effectRan.current) {
 			if (!Cookies.get("thread_id")) {
 				axios
-					.post("http://localhost:5000/create_thread", {
+					.post("http://127.0.0.1:5000/create_thread", {
 						name: props.agentName,
 						language: props.language,
 					})
@@ -121,9 +121,9 @@ const Discussion = (props) => {
 
 			axios
 				.post(
-					"http://localhost:5000/messages/" +
-						Cookies.get("thread_id") +
-						"/send",
+					"http://127.0.0.1:5000/messages/" +
+					Cookies.get("thread_id") +
+					"/send",
 					base64data
 				)
 				.then((response) => {
